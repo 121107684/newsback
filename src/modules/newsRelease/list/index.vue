@@ -1,0 +1,60 @@
+<template>
+    <div>
+        <common-title 
+            :name="name">
+        </common-title>
+        <el-button @click="addNews" type="primary">创建新闻</el-button>
+        <new-table :list="list"></new-table>
+        <pagination
+            @changePageInfo="change"
+            :pageInfo="pageInfo">
+        </pagination>
+    </div>
+</template>
+
+<script>
+import commonTitle from '@/components/title';
+import pagination from '@/components/pagination';
+import newTable from './table';
+import { getNewsList} from './api';
+export default {
+    components: {
+        commonTitle,
+        pagination,
+        newTable
+    },
+    data() {
+      return {
+        name: '新闻发布',
+        pageInfo: {
+            pageNo: 1,
+            pageSize: 10,
+            totalCount: 50
+        },
+        list: []
+      }
+    },
+    methods: {
+        change() {},
+        addNews() {
+            this.$router.push({
+                path: 'detail',
+                name: 'newsReleaseDetail',
+                query: {}
+            });
+        }
+    },
+    created() {
+        getNewsList({
+            pageSize: 1
+        }).then(v=>{
+            this.list = v.result;
+            console.debug(v)
+        })
+    }
+}
+</script>
+
+<style lang="stylus" scoped>
+
+</style>
