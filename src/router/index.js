@@ -5,6 +5,7 @@ import Vue from 'vue';
 import apply from './apply';
 import newsRelease from './newsRelease';
 import adSetting from './adSetting';
+import userlogin from './userlogin';
 Vue.use(VueRouter);
 
 
@@ -18,14 +19,16 @@ const home = {
     meta: {
         requiresAuth: true
     },
-    component: () => import ('modules/index')
+    component: () => import ('modules/index'),
+    children: [newsRelease, apply, adSetting]
 };
 const router = new VueRouter({
     routes: [
         home,
-        newsRelease,  // 新闻发布
-        apply, // 入户申请
-        adSetting, // 广告栏设置
+        userlogin,
+        // newsRelease,  // 新闻发布
+        // apply, // 入户申请
+        // adSetting, // 广告栏设置
         notFound
     ]
 });

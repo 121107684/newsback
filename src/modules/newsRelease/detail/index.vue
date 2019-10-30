@@ -1,124 +1,223 @@
 <template>
-  <div>
-    <common-title 
-        :name="name"
-        :subName="subName"
-        :toPath="toPath">
-    </common-title>
-    <el-form
-      :model="ruleForm"
-      :rules="rules"
-      ref="ruleForm"
-      label-width="100px"
-      class="ruleForm">
-      <el-form-item label="新闻标题" prop="name">
-        <el-input v-model="ruleForm.name"></el-input>
-      </el-form-item>
-      <el-form-item label="类型" prop="region">
-        <el-select v-model="ruleForm.region" placeholder="请选择活动区域">
-          <el-option label="协会要问" value="shanghai"></el-option>
-          <el-option label="会员动态" value="beijing"></el-option>
-          <el-option label="党建工作" value="shanghai"></el-option>
-          <el-option label="产业研究" value="beijing"></el-option>
-          <el-option label="通知公告" value="shanghai"></el-option>
-          <el-option label="品牌活动" value="beijing"></el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="新闻配图" required>
-            <pic-upload></pic-upload>
-       </el-form-item> 
-      <el-form-item label="新闻内容" prop="desc">
-        <el-input type="textarea" v-model="ruleForm.desc"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
-        <el-button @click="resetForm('ruleForm')">重置</el-button>
-      </el-form-item>
-    </el-form>
-  </div>
+    <div>
+        <common-title 
+            :name="name"
+            :subName="subName"
+            :toPath="toPath">
+        </common-title>
+        <el-form
+        :model="ruleForm"
+        :rules="rules"
+        ref="ruleForm"
+        label-width="100px"
+        class="ruleForm">
+        <el-form-item label="新闻标题" prop="title">
+            <el-input v-model="ruleForm.title"></el-input>
+        </el-form-item>
+        <el-form-item label="类型" prop="type">
+            <el-select v-model="ruleForm.type" placeholder="请选择活动区域">
+            <el-option v-for="data in newsType" :key="data.name" :label="data.name" :value="data.keys"></el-option>
+            </el-select>
+        </el-form-item>
+        <el-form-item label="新闻配图" prop="imgDatas">
+                <transition-group class="images" tag="div" name="flip-list">
+                    <div class="mb8 imgbox mr12" v-for="(item, index) in ruleForm.imgDatas" :key="item.fileKey">
+                        <img :src="item.url" alt="">
+                        <el-button
+                            v-if="index !== 0"
+                            class="left is-circle" type="primary"
+                            icon="el-icon-arrow-left"
+                            @click="movePic('left', index)"></el-button>
+                        <el-button
+                            v-if="index !== ruleForm.imgDatas.length - 1"
+                            class="right is-circle"
+                            type="primary"
+                            icon="el-icon-arrow-right"
+                            @click="movePic('right', index)"></el-button>
+                    </div>
+                </transition-group>
+                <div>
+                    <pic-upload @uploadSuccess="uploadSucess"></pic-upload>
+                </div>
+        </el-form-item> 
+        <el-form-item label="新闻内容" prop="digest">
+            <el-input type="textarea" v-model="ruleForm.digest"></el-input>
+        </el-form-item>
+        <el-form-item>
+            <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
+            <el-button @click="resetForm('ruleForm')">重置</el-button>
+        </el-form-item>
+        </el-form>
+    </div>
 </template>
 
 <script>
 import commonTitle from '@/components/title';
 import picUpload from '@/components/picUpload';
+import {newsType} from '@/common/config';
+import {newsAdd, newsEdit, newsInfo} from '@/common/api';
 export default {
     components: {
         commonTitle,
         picUpload
     },
-  data() {
-    return {
-        name: '编辑新闻',
-        subName: '新闻列表',
-        toPath: '/newsRelease/list',
-      ruleForm: {
-        name: "",
-        region: "",
-        date1: "",
-        date2: "",
-        delivery: false,
-        type: [],
-        resource: "",
-        desc: ""
-      },
-      rules: {
-        name: [
-          { required: true, message: "请输入活动名称", trigger: "blur" },
-          { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" }
-        ],
-        region: [
-          { required: true, message: "请选择活动区域", trigger: "change" }
-        ],
-        date1: [
-          {
-            type: "date",
-            required: true,
-            message: "请选择日期",
-            trigger: "change"
-          }
-        ],
-        date2: [
-          {
-            type: "date",
-            required: true,
-            message: "请选择时间",
-            trigger: "change"
-          }
-        ],
-        type: [
-          {
-            type: "array",
-            required: true,
-            message: "请至少选择一个活动性质",
-            trigger: "change"
-          }
-        ],
-        resource: [
-          { required: true, message: "请选择活动资源", trigger: "change" }
-        ],
-        desc: [{ required: true, message: "请填写活动形式", trigger: "blur" }]
-      }
-    };
-  },
-  methods: {
-    submitForm(formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          alert("submit!");
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-      });
+    data() {
+        return {
+            name: '编辑新闻',
+            subName: '新闻列表',
+            toPath: '/newsRelease/list',
+            newsType: newsType,
+            ruleForm: {
+                title: "",
+                type: "",
+                imgDatas: [{
+                    fileKey: "/default/dd13df21d879be0casdfbec1fc9f",
+                    height: 0,
+                    quality: 0,
+                    url: "http://47.92.175.76:8079/api/udc/file/get?key=default/dd13df21d879be0cdf30af08bec1fc9f/000440.jpg",
+                    width: 0
+                }, {
+                    fileKey: "/default/dd13df2sadfdf30af08bec1fc9f",
+                    height: 0,
+                    quality: 0,
+                    url: "http://47.92.175.76:8079/api/udc/file/get?key=default/dd13df21d879be0cdf30af08bec1fc9f/000440.jpg",
+                    width: 0
+                }, {
+                    fileKey: "/default/sdf79be0cdf30af08bec1fc9f",
+                    height: 0,
+                    quality: 0,
+                    url: "http://47.92.175.76:8079/api/udc/file/get?key=default/dd13df21d879be0cdf30af08bec1fc9f/000440.jpg",
+                    width: 0
+                }, {
+                    fileKey: "/default/dd1df8bec1fc9f",
+                    height: 0,
+                    quality: 0,
+                    url: "http://47.92.175.76:8079/api/udc/file/get?key=default/dd13df21d879be0cdf30af08bec1fc9f/000440.jpg",
+                    width: 0
+                }],
+            digest: ""
+            },
+            rules: {
+                title: [
+                    { required: true, message: "请输入新闻名称", trigger: "blur" },
+                    { min: 3, max: 50, message: "长度在 3 到 50 个字符", trigger: "blur" }
+                ],
+                type: [
+                    { required: true, message: "请输入新闻类别", trigger: "change" }
+                ],
+                digest: [
+                    { required: true, message: "请填写新闻内容", trigger: "blur" },
+                    { min: 10, max: 5000, message: "长度在 10 到 5000 个字符", trigger: "blur" }
+                ],
+            }
+        };
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
+    created() {
+        let {type, id} = this.$route.query
+        if(type === 'edit') {
+            newsInfo({
+                id
+            }).then(v=>{
+                Object.keys(v).forEach(key=>{
+                    this.ruleForm[key] = v[key]
+                })
+            })
+        }
+    },
+    methods: {
+        submitForm(formName) {
+            this.$refs[formName].validate(valid => {
+                if (valid) {
+                    switch (this.$route.query.type) {
+                        case 'edit': 
+                            newsEdit(
+                                this.ruleForm
+                            ).then(v=>{
+                                this.$router.push({
+                                    path: 'list',
+                                    name: 'newsReleaseList',
+                                });
+                            })
+                            break;
+                        case 'add':
+                            newsAdd(
+                                Object.assign(this.ruleForm, {status: 1})
+                            ).then(v=>{
+                                 this.$router.push({
+                                    path: 'list',
+                                    name: 'newsReleaseList',
+                                });
+                            })
+                            break;
+                    }
+                } else {
+                    console.log("error submit!!");
+                    return false;
+                }
+            });
+        },
+        resetForm(formName) {
+            this.$refs[formName].resetFields();
+        },
+        uploadSucess(data) {
+            this.ruleForm.imgDatas.push(data)
+        },
+        movePic(str, index) {
+            let arr = this.ruleForm.imgDatas.concat([]);
+            let x;
+            let y;
+            if (str === 'left') {
+                x = index - 1;
+                y = index;
+            } else {
+                x = index;
+                y = index + 1;
+            }
+            arr[x] = this.ruleForm.imgDatas[y];
+            arr[y] = this.ruleForm.imgDatas[x];
+            this.ruleForm.imgDatas = arr;
+        }
     }
-  }
 };
 </script>
 
 <style lang="stylus" scoped>
 .ruleForm
     width 600px
+    .images
+        &:after
+            content ''
+            height 0
+            width 150px
+            display block
+        .imgbox 
+            width 150px
+            height 150px
+            border 1px dashed #d9d9d9
+            border-radius 6px
+            display block
+            position relative
+            float left
+            img 
+                display block
+                width 100%
+                height 100%
+                background-color #ccc
+            &:hover
+                .el-button
+                    display block
+        .el-button
+            width 40px
+            height 40px
+            position absolute
+            top 0
+            bottom 0
+            margin auto
+            left 8px
+            display none
+            &.right
+                left auto
+                right 8px
+.flip-list-move
+    transition transform .5s
 </style>

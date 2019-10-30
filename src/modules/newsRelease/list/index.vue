@@ -1,13 +1,23 @@
 <template>
-    <div>
+    <div class="page-full-height">
         <common-title 
             :name="name">
         </common-title>
-        <el-button @click="addNews" type="primary">创建新闻</el-button>
-        <new-table :list="list"></new-table>
+        <el-form :inline="true" label-width="80px" size="small" :model="querys" class="mb12">
+            <el-form-item class="mb0" label="新闻类别">
+                <el-select clearable v-model="querys.type" placeholder="">
+                    <el-option v-for="data in newsType" :key="data.name" :label="data.name" :value="data.keys"></el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item class="mb0">
+                <el-button type="primary" @click="onSearch">查询</el-button>
+                <el-button type="primary" @click="addNews">创建新闻</el-button>
+            </el-form-item>
+        </el-form>
+        <new-table class="table-full-height mb16" :list="list"></new-table>
         <pagination
             @changePageInfo="change"
-            :pageInfo="pageInfo">
+            :pageInfo="querys">
         </pagination>
     </div>
 </template>
@@ -16,7 +26,8 @@
 import commonTitle from '@/components/title';
 import pagination from '@/components/pagination';
 import newTable from './table';
-import { getNewsList} from './api';
+import {getNewsPage} from '@/common/api';
+import {newsType} from '@/common/config';
 export default {
     components: {
         commonTitle,
@@ -24,37 +35,53 @@ export default {
         newTable
     },
     data() {
-      return {
-        name: '新闻发布',
-        pageInfo: {
-            pageNo: 1,
-            pageSize: 10,
-            totalCount: 50
-        },
-        list: []
-      }
+        return {
+            name: '新闻发布',
+            list: [],
+            querys: {
+                type: '',
+                pageNum: 1,
+                pageSize: 10,
+                totalCount: 0,
+                lastId: ''
+            },
+            newsType: newsType
+        }
     },
     methods: {
-        change() {},
+        change(v) {
+            Object.keys(v).forEach(key=>{
+                this.querys[key] = v[key]
+            })
+            this.getList();
+        },
         addNews() {
             this.$router.push({
                 path: 'detail',
                 name: 'newsReleaseDetail',
-                query: {}
+                query: {
+                    type: 'add'
+                }
             });
+        },
+        onSearch() {
+            this.getList();
+        },
+        getList() {
+            getNewsPage(this.querys).then(v=>{
+                this.list = v.data;
+                this.querys.totalCount = v.page.pageTotal
+                console.debug(v)
+            })
         }
     },
-    created() {
-        getNewsList({
-            pageSize: 1
-        }).then(v=>{
-            this.list = v.result;
-            console.debug(v)
-        })
+    async mounted() {
+        await this.getList();
     }
 }
 </script>
 
 <style lang="stylus" scoped>
+@import '~@/common/global.styl'
 
 </style>

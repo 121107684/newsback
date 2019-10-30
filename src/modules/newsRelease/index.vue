@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="full-height bgWhite p20">
         <router-view></router-view>
     </div>
 </template>
@@ -9,7 +9,3 @@
         
     }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

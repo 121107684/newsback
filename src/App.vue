@@ -1,28 +1,19 @@
 <template>
-  <div id="app">
-    <el-header class="header" height="64px">
-        
-    </el-header>
-    <el-container>
-        <el-aside width="182px">
-            <sidebar></sidebar>
-        </el-aside>
-        <el-main>
-            <router-view></router-view>
-        </el-main>
-    </el-container>
-  </div>
+    <div id="app">
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
-import elHeader from './components/header';
-import sidebar from './components/sidebar';
+import watcher from '@/common/watcher';
 export default {
-  name: 'app',
-  components: {
-	elHeader,
-	sidebar
-  }
+    async created() {
+        watcher.watch({
+            show: (err) => {
+                this.$message.error(err);
+            }
+        });
+    }
 }
 </script>
 
@@ -30,7 +21,5 @@ export default {
 #app
     padding 0px
     height 100%
-    .el-container
-        height calc(100% - 64px)
-        width 100%
+    background url(./assets/img/loginbg.jpg) no-repeat center top / 100% 100%
 </style>

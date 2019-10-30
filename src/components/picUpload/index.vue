@@ -2,7 +2,7 @@
     <div>
         <el-upload
             class="avatar-uploader"
-            action="https://jsonplaceholder.typicode.com/posts/"
+            action="/api/udc/file/uploadFile"
             :show-file-list="false"
             :on-success="handleAvatarSuccess"
             :before-upload="beforeAvatarUpload">
@@ -21,12 +21,13 @@ export default {
     },
     methods: {
         handleAvatarSuccess(res, file) {
-            this.imageUrl = URL.createObjectURL(file.raw);
+            if (res.code === 200) {
+                this.$emit('uploadSuccess', res.data)
+            }
         },
         beforeAvatarUpload(file) {
             const isJPG = file.type === 'image/jpeg';
             const isLt2M = file.size / 1024 / 1024 < 2;
-
             if (!isJPG) {
             this.$message.error('上传头像图片只能是 JPG 格式!');
             }
@@ -41,7 +42,7 @@ export default {
 
 <style lang="stylus">
 .avatar-uploader .el-upload {
-    border: 1px dashed #d9d9d9;
+    border 1px dashed #d9d9d9
     border-radius: 6px;
     cursor: pointer;
     position: relative;
@@ -53,14 +54,14 @@ export default {
   .avatar-uploader-icon {
     font-size: 28px;
     color: #8c939d;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
+    width: 148px;
+    height: 148px;
+    line-height: 148px;
     text-align: center;
   }
   .avatar {
-    width: 178px;
-    height: 178px;
+    width: 148px;
+    height: 148px;
     display: block;
   }
 </style>

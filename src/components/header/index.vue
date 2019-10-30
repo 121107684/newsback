@@ -29,16 +29,14 @@ export default {
 .container
     height 64px
     line-height 64px
-    box-shadow 2px 2px 0px #efefef
+    background rgba(255, 255, 255, .8)
     clearfix()
     h1
         float left
         margin 0
         font-size 20px
-        color mainColor
         width 182px
         height 64px
-        background-color titBgColor
         text-align center
         line-height 64px
     .user-info
@@ -46,6 +44,7 @@ export default {
         font-size 0
         color fontColorD
         padding-right 41px
+        height 64px
         span
             font-size 16px
     .user-name

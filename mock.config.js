@@ -29,7 +29,7 @@ module.exports = (app) => {
     app.use(function mockServer(req, res, next) {
         if (req.headers['x-requested-with'] === 'fetch') {
             console.log('mock -> ' + req.url);
-            let mockFile = req.path.replace(/^\/api/, '').replace(/\/\d+/g, '/0');
+            let mockFile = req.path.replace(/\/\d+/g, '/0');
             try {
                 const mockFn = require(`./mock${mockFile}`);
                 setTimeout(() => {

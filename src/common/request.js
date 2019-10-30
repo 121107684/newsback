@@ -64,7 +64,7 @@ function request(method, {url, headers = {}, params = {}, type}) {
             // 业务数据挂载在result上，各项目如有不同，直接修改此处
             resolve(data.data);
         }).catch(error => {
-            eventBus.$emit('requestError', error);
+            // eventBus.$emit('requestError', error);
             reject(error);
         }).finally(()=>{
             clearTimeout(timeout);

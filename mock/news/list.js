@@ -7,8 +7,8 @@ module.exports = function (req, res) {
                     "id": "@integer(100000,10000000)",
                     "newimg": "@integer(100000,10000000)",
                     "title": "@ctitle(15)",
-                    "editTime": "2019-10-05",
-                    "type|1": [1, 2],
+                    "publishDate": "2019-10-05",
+                    "type|1": [1, 2,3,4,5,6],
                     "createdTime": 101601
                 }
             ],

@@ -4,18 +4,14 @@ import {mapGetters} from 'vuex';
 export default {
     data() {
         return {
-            name: 'pagination'
+            name: 'pagination',
+            pageSizes: [10, 20, 50, 100],
         };
     },
     props: {
         pageInfo: {
             type: Object
         }
-    },
-    computed: {
-        ...mapGetters({
-            pageSizes: 'envPageSizes'
-        })
     },
     methods: {
         handlePageInfoChange(value) {
@@ -27,8 +23,8 @@ export default {
 <template>
     <el-pagination
       @size-change="handlePageInfoChange({pageSize: $event})"
-      @current-change="handlePageInfoChange({pageNo: $event})"
-      :current-page="pageInfo.pageNo"
+      @current-change="handlePageInfoChange({pageNum: $event})"
+      :current-page="pageInfo.pageNum"
       :page-sizes="pageSizes"
       :page-size="pageInfo.pageSize"
       layout="total, sizes, prev, pager, next, jumper"

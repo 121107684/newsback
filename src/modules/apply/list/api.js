@@ -1,8 +1,8 @@
 import request from 'common/request';
 /* 线下退款列表获取*/
-export const getNewsList = (payNo) => {
+export const getMshipApplypage = (payNo) => {
     return request.post({
-        url: '/news/list',
+        url: '/api/udc/mship/applyPage',
         params: payNo,
         type:'json'
     });

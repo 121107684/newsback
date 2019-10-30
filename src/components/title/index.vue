@@ -26,7 +26,7 @@ export default {
 };
 </script>
 <template>
-    <div class="common-title">
+    <div class="common-title clearfix">
         <p class="main-title" :style="{marginBottom: marginBottom}">{{name}}</p>
         <el-breadcrumb separator=">" v-if="subName">
             <el-breadcrumb-item :to="{ path: toPath }">{{subName}}</el-breadcrumb-item>
@@ -39,8 +39,8 @@ export default {
 .common-title
     .main-title
         font-size 24px
-        line-height 31px
-        color #303133
+        line-height 32px
+        color #333
     .el-breadcrumb
         padding-bottom 16px
         .el-breadcrumb__item

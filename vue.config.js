@@ -43,11 +43,11 @@ module.exports = {
     },
     devServer: {
         port: 8080,
-        before: Mocks,
+        // before: Mocks,
         disableHostCheck: true,
         proxy: {
             '/': {
-                target: 'http://localhost:8080',
+                target: 'http://47.92.175.76:8081',
                 changeOrigin: true
             }
         }
