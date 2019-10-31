@@ -4,13 +4,12 @@ export function objToParams(json, slice = '&') {
     }, '').slice(0, -1);
 }
 
-export function num2Str(strs) {
-    if (!strs) {
-        return new TypeError('请传入需要转化的参数');
-    }
-    let reg = /[^\\]\"\:\d{16,19}/g;
-    strs = strs.replace(reg, (v) => {
-        return v.substring(0, 3) + '"' + v.substring(3) + '"';
-    });
-    return strs;
-}
+export function formatDate (date) { 
+    date = new Date(date);
+    var y = date.getFullYear();  
+    var m = date.getMonth() + 1;  
+    m = m < 10 ? '0' + m : m;  
+    var d = date.getDate();  
+    d = d < 10 ? ('0' + d) : d;  
+    return y + '-' + m + '-' + d;  
+};  

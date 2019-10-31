@@ -8,19 +8,35 @@
         <div class="info">
             <div class="row">
                 <h3>企业名称</h3>
-                <p>xxxxxxxxxxxxxxxxxxxx</p>
+                <p>{{apply.companyName}}</p>
             </div>
             <div class="row">
-                <h3>企业名称</h3>
-                <p>xxxxxxxxxxxxxxxxxxxx</p>
+                <h3>所属环境</h3>
+                <p>{{apply.industry}}</p>
             </div>
             <div class="row">
-                <h3>企业名称</h3>
-                <p>xxxxxxxxxxxxxxxxxxxx</p>
+                <h3>所在区域</h3>
+                <p>{{apply.area}}</p>
             </div>
             <div class="row">
-                <h3>企业名称</h3>
-                <p>xxxxxxxxxxxxxxxxxxxx</p>
+                <h3>企业法人</h3>
+                <p>{{apply.corporate}}</p>
+            </div>
+            <div class="row">
+                <h3>企业网址</h3>
+                <p>{{apply.companyHref}}</p>
+            </div>
+            <div class="row">
+                <h3>申请人姓名</h3>
+                <p>{{apply.linkName}}</p>
+            </div>
+            <div class="row">
+                <h3>申请人性别</h3>
+                <p>{{apply.linkSex}}</p>
+            </div>
+            <div class="row">
+                <h3>申请人联系方式</h3>
+                <p>{{apply.linkTel}}</p>
             </div>
         </div>
     </div>
@@ -28,6 +44,7 @@
 
 <script>
 import commonTitle from '@/components/title';
+import {getMshipApplyInfo} from '@/common/api';
 export default {
     components: {
         commonTitle
@@ -36,8 +53,16 @@ export default {
         return {
             name: '申请详情',
             subName: '申请列表',
-            toPath: '/apply/list'
+            toPath: '/apply/list',
+            apply: {}
         }
+    },
+    created() {
+        getMshipApplyInfo({
+            id:  this.$route.query.id
+        }).then(v=>{
+            this.apply = v.data;
+        })
     }
 }
 </script>

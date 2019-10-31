@@ -44,8 +44,8 @@
             <el-input type="textarea" v-model="ruleForm.digest"></el-input>
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
-            <el-button @click="resetForm('ruleForm')">重置</el-button>
+            <el-button type="primary" @click="submitForm">立即创建</el-button>
+            <el-button @click="back">重置</el-button>
         </el-form-item>
         </el-form>
     </div>
@@ -133,20 +133,14 @@ export default {
                             newsEdit(
                                 this.ruleForm
                             ).then(v=>{
-                                this.$router.push({
-                                    path: 'list',
-                                    name: 'newsReleaseList',
-                                });
+                                this.back();
                             })
                             break;
                         case 'add':
                             newsAdd(
                                 Object.assign(this.ruleForm, {status: 1})
                             ).then(v=>{
-                                 this.$router.push({
-                                    path: 'list',
-                                    name: 'newsReleaseList',
-                                });
+                                this.back();
                             })
                             break;
                     }
@@ -154,6 +148,12 @@ export default {
                     console.log("error submit!!");
                     return false;
                 }
+            });
+        },
+        back() {
+            this.$router.push({
+                path: 'list',
+                name: 'newsReleaseList',
             });
         },
         resetForm(formName) {

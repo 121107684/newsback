@@ -91,3 +91,124 @@ export const newsInfo = (data) => {
         type:'json'
     });
 };
+
+/***************************会员申请接口*********************** */
+/* 会员分页列表
+   params： {
+        "beginDate" : "string",
+        "endDate" : "string",
+        "lastId": "string",
+        "pageNum": "string",
+        "pageSize": "string"
+    }
+*/
+export const getMshipApplypage = (params) => {
+    return request.post({
+        url: '/api/udc/mship/applyPage',
+        params: params,
+        type:'json'
+    });
+};
+
+/* 会员申请详情
+   params： {
+        "id" : "string"
+    }
+*/
+export const getMshipApplyInfo = (params) => {
+    return request.post({
+        url: '/api/udc/mship/applyInfo',
+        params: params,
+        type:'json'
+    });
+};
+
+/***************************广告栏设置*********************** */
+
+/* 广告分页列表
+   params： {
+        "lastId": "string",
+        "pageNum": "string",
+        "pageSize": "string",
+        "type": 0
+    }
+*/
+export const getAdPage = (data) => {
+    return request.post({
+        url: '/api/udc/ad/page',
+        params: data,
+        type:'json'
+    });
+};
+
+/* 广告删除
+   params： {
+        "id": "string"
+    }
+*/
+export const getAdDel = (data) => {
+    return request.post({
+        url: '/api/udc/ad/remove',
+        params: data,
+        type:'json'
+    });
+};
+
+/* 广告详情
+   params： {
+        "id": "string"
+    }
+*/
+export const getAdInfo = (data) => {
+    return request.post({
+        url: '/api/udc/ad/info',
+        params: data,
+        type:'json'
+    });
+};
+
+/* 广告编辑
+   params： {
+        "id": "string",
+        "imgData": {
+            "key": "string",
+            "thumbUrl": "string",
+            "url": "string"
+        },
+        "imgKey": "string",
+        "publishDate": "string",
+        "status": 0,
+        "title": "string",
+        "url": "string"
+    }
+*/
+export const getAdUpdata = (data) => {
+    return request.post({
+        url: '/api/udc/ad/update',
+        params: data,
+        type:'json'
+    });
+};
+
+/* 广告添加
+   params： {
+        "id": "string",
+        "imgData": {
+            "key": "string",
+            "thumbUrl": "string",
+            "url": "string"
+        },
+        "imgKey": "string",
+        "publishDate": "string",
+        "status": 0,
+        "title": "string",
+        "url": "string"
+    }
+*/
+export const getAdAdd = (data) => {
+    return request.post({
+        url: '/api/udc/ad/add',
+        params: data,
+        type:'json'
+    });
+};

@@ -6,7 +6,7 @@
             :show-file-list="false"
             :on-success="handleAvatarSuccess"
             :before-upload="beforeAvatarUpload">
-            <img v-if="imageUrl" :src="imageUrl" class="avatar">
+            <img v-if="imageUrl && showIng" :src="imageUrl" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
     </div>
@@ -19,8 +19,15 @@ export default {
             imageUrl: ''
         };
     },
+    props: {
+        showIng: {
+            type: Boolean,
+            default: false
+        }
+    },
     methods: {
         handleAvatarSuccess(res, file) {
+            this.imageUrl = res.data.url
             if (res.code === 200) {
                 this.$emit('uploadSuccess', res.data)
             }
