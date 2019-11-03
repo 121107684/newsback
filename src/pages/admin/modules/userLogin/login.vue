@@ -84,7 +84,7 @@ export default {
                 date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
                 document.cookie = `accessToken="${v.data.accessToken}"; expires=${date.toUTCString()}`;
                 document.cookie = `name="${v.data.name}"; expires=${date.toUTCString()}`;
-                document.cookie = `role="${v.data.accessToken}"; expires=${date.toUTCString()}`;
+                document.cookie = `role="${v.data.role}"; expires=${date.toUTCString()}`;
                 this.$router.push({
                     path: '/'
                 });

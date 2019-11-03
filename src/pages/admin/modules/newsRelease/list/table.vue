@@ -36,6 +36,7 @@
                 <el-button
                 size="mini"
                 type="primary"
+                v-if="statusShow(scope.row)"
                 @click="handleApply(scope.$index, scope.row)">发布</el-button>
             </template>
         </el-table-column>
@@ -47,6 +48,7 @@ import newinfoModule from './newInfoModule';
 import newtypeModule from './newTypeModule';
 import newstatueModule from './newStatusModule';
 import {newsDelect, newsPublish} from '@/common/api';
+import {getCookie} from '@/common/utils';
 export default {
     components: {
         newinfoModule,
@@ -75,6 +77,11 @@ export default {
                 text: '发布状态',
                 cellComponent: 'newstatue-module'
             }]
+        }
+    },
+    computed: {
+        cookieRole() {
+            return parseInt(getCookie('role').replace(/\"/g, ""), 10)
         }
     },
     methods: {
@@ -132,6 +139,10 @@ export default {
                     message: '已取消发布'
                 });          
             });
+        },
+        statusShow(data) {
+            console.debug(data.status, this.cookieRole);
+            return data.status === 0 && this.cookieRole === 1
         }
     }
 }
