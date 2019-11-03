@@ -1,6 +1,6 @@
 <template>
     <div class="list-content">
-        <div class="title">大标题</div>
+        <div class="title">{{title}}</div>
         <ul>    
             <li class="frist">
                 <h2>这里是第一条协会动态新闻的标题</h2>
@@ -82,9 +82,34 @@
 
 <script>
 import { Pagination } from 'element-ui';
+import { getAdPagePublished} from '@/common/api';
+import { newsType} from '@/common/config';
 export default {
     components: {
         [Pagination.name]: Pagination
+    },
+    data() {
+        return {
+            title: ''
+        }
+    },
+    mounted() {
+        let path = this.$route.path.match(/\/(\S*)\//)[1];
+        this.title = newsType.filter(v=>{
+            return v.code === path
+        })[0].name;
+    },
+    watch:{
+        $route:{
+            handler(newRouter){
+               try {
+                    let path = newRouter.path.match(/\/(\S*)\//)[1];
+                    this.title = newsType.filter(v=>{
+                        return v.code === path
+                    })[0].name;
+                } catch {}
+            }
+        }
     }
 }
 </script>

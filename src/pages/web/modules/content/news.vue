@@ -67,14 +67,14 @@ export default {
         return {}
     },
     created() {
-        getAdPagePublished({
+        getNewsPagePublished({
             pageNum: 1,
             pageSize: 3,
             type: 3
         }).then(v=>{
             console.debug(v)
         })
-        getAdPagePublished({
+        getNewsPagePublished({
             pageNum: 1,
             pageSize: 3,
             type: 4

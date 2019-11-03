@@ -64,7 +64,6 @@ export const getNewsPage = (data) => {
     }
 */
 export const getNewsPagePublished = (data) => {
-    console.debug(data);
     return request.post({
         url: '/api/udc/news/page/published',
         params: data,
