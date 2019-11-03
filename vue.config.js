@@ -1,6 +1,7 @@
 const Mocks = require('./mock.config');
 const path = require('path');
 const resolve = (dir) => path.join(__dirname, dir);
+const pages = require('./multi.config');
 
 class CustomFilterPlugin {
     constructor({ exclude }) {
@@ -18,12 +19,7 @@ module.exports = {
     lintOnSave: false,
     productionSourceMap: false,
     publicPath: './',
-    pages: {
-        index: {
-            entry: 'src/main.js',
-            template: 'public/index.html'
-        }
-    },
+    pages,
     configureWebpack: {
         plugins: [
             new CustomFilterPlugin({

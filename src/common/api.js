@@ -18,6 +18,18 @@ export const userLogin = (data) => {
         "username": "string"
     }
 */
+export const userLoginOut = () => {
+    return request.post({
+        url: '/api/udc/loginOut',
+        type:'json'
+    });
+};
+/* 退出登录
+   params： {
+        "password": "string",
+        "username": "string"
+    }
+*/
 export const userForgetPwd = (data) => {
     return request.post({
         url: '/api/udc/login',
@@ -39,12 +51,26 @@ export const userForgetPwd = (data) => {
 */
 export const getNewsPage = (data) => {
     return request.post({
+        url: '/api/udc/news/page',
+        params: data,
+        type:'json'
+    });
+};
+/* 新闻分页列表(无登陆)
+    params： {
+        "pageNum": "string",
+        "pageSize": "string",
+        "type": 0
+    }
+*/
+export const getNewsPagePublished = (data) => {
+    console.debug(data);
+    return request.post({
         url: '/api/udc/news/page/published',
         params: data,
         type:'json'
     });
 };
-
 
 /* 新闻添加
    params： {
@@ -79,6 +105,33 @@ export const newsEdit = (data) => {
         type:'json'
     });
 };
+
+/* 新闻删除
+   params： {
+        "id": "integer"
+    }
+*/
+export const newsDelect = (data) => {
+    return request.post({
+        url: '/api/udc/news/remove',
+        params: data,
+        type:'json'
+    });
+};
+
+/* 新闻发布
+   params： {
+        "id": "integer"
+    }
+*/
+export const newsPublish = (data) => {
+    return request.post({
+        url: '/api/udc/news/publish',
+        params: data,
+        type:'json'
+    });
+};
+
 /* 新闻详情
    params： {
         "id": "integer"
@@ -141,6 +194,25 @@ export const getAdPage = (data) => {
     });
 };
 
+/* 广告分页列表(无登陆)
+   params： {
+        "lastId": "string",
+        "pageNum": "string",
+        "pageSize": "string",
+        "type": 0
+    }
+*/
+export const getAdPagePublished = () => {
+    return request.post({
+        url: '/api/udc/ad/page/published',
+        params: {
+            "pageNum": 1,
+            "pageSize": 10,
+            "type": 0
+          },
+        type:'json'
+    });
+};
 /* 广告删除
    params： {
         "id": "string"

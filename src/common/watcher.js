@@ -20,7 +20,11 @@ export default {
         eventBus.$on('statusError', (data) => {
             switch (parseInt(data.code, 10)) {
                 case 502:
-                    // location.href = '/#/login';
+                    uiAlert.show(data.message[0].details)
+                    uiAlert.goRouter({
+                        path: '/login',
+                        name: 'login',
+                    })
                     break;
                 case 401:
                     break;

@@ -1,12 +1,13 @@
 
 import eventBus from './eventBus';
-import {objToParams} from './utils';
+import {objToParams, getCookie} from './utils';
 const reqHeaders = {
     'Cache-Control': 'max-age=0',
     'Pragma': 'no-cache',
     'Accept': 'application/json',
     'Content-Type': 'application/x-www-form-urlencoded',
-    'x-requested-with': 'fetch'
+    'x-requested-with': 'fetch',
+    "accessToken": 'rSU2ns2pdjlx2Khq6pS/QUFFAurtyx4QZpeT7ex4CEJOxWb7GkETsyRKUbpyaNdQ57j41qtjBVU3bW6l+fbKXJtXfAgMiYHVQEzF8Q6EacQPRzL/HIT6SMAxHA=='
 };
 
 /**
@@ -27,9 +28,15 @@ function request(method, {url, headers = {}, params = {}, type}) {
     if (isJsonType) {
         meta.headers['Content-Type'] = 'application/json;charset=UTF-8';
     }
+    let cookies = {}
+    if (getCookie('accessToken')) {
+        Object.assign(cookies, {accessToken: getCookie('accessToken').replace(/\"/g, "")})
+    }
     const formParams = objToParams(params);
     if (method === 'get' && formParams) {
         url += `?${formParams}`;
+    } else if (method === 'post' && formParams) {
+        url += `?${objToParams(cookies)}`;
     }
     if (method !== 'get' && formParams) {
         if (isJsonType) {
@@ -38,7 +45,7 @@ function request(method, {url, headers = {}, params = {}, type}) {
             meta.body = formParams.toString();
         }
     }
-
+    
     return new Promise((resolve, reject) => {
         let timeout = setTimeout(()=> {
             // Toast({message: '网络错误, 请稍后再试~', duration: 2500});
@@ -57,12 +64,12 @@ function request(method, {url, headers = {}, params = {}, type}) {
             return response.json();
         }).then(data => {
             // 返回JSON中的status非0 视为请求失败
-            if (parseInt(data.errNo, 10) !== 0) {
+            if (parseInt(data.code, 10) !== 200) {
                 eventBus.$emit('statusError', data);
                 reject(data);
             }
             // 业务数据挂载在result上，各项目如有不同，直接修改此处
-            resolve(data.data);
+            resolve(data);
         }).catch(error => {
             // eventBus.$emit('requestError', error);
             reject(error);
