@@ -37,6 +37,20 @@ export const userForgetPwd = (data) => {
         type:'json'
     });
 };
+/* 修改密码
+   params： {
+        "newPassword": "string",
+        "oldPassword": "string",
+        "username": "string"
+    }
+*/
+export const userModifyPwd = (data) => {
+    return request.post({
+        url: '/api/udc/modifyPwd',
+        params: data,
+        type:'json'
+    });
+};
 
 
 /****************************新闻模块接口****************************** */
@@ -157,6 +171,19 @@ export const newsInfo = (data) => {
 export const getMshipApplypage = (params) => {
     return request.post({
         url: '/api/udc/mship/applyPage',
+        params: params,
+        type:'json'
+    });
+};
+
+/* 会员申请详情
+   params： {
+        "id" : "string"
+    }
+*/
+export const getMshipApply = (params) => {
+    return request.post({
+        url: '/api/udc/mship/apply',
         params: params,
         type:'json'
     });

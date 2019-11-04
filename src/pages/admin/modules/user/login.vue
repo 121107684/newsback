@@ -10,7 +10,7 @@
             <el-form-item label-width="75px"  size="mini"  label="密码" prop="password"  class="wc form-group mb0"> 
                 <el-input type="password" v-model="ruleForm.password"></el-input>
             </el-form-item>
-            <router-link class="findpassword" to="login/findpassword">忘记密码？点击找回</router-link>
+            <router-link class="findpassword" to="findpassword">忘记密码？点击找回</router-link>
             <div class="row-block">
                 <a @click="submiForm" class="btnup">登录</a>
             </div> 

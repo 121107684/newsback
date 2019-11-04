@@ -34,6 +34,6 @@ export default {
 @import '~@/assets/css/bootstrap.min.css';
 @import '~@/assets/sass/now-ui-kit.scss';
 .page-header-image{
-    background: url(~@/assets/img/login.jpg) no-repeat center top 100% 100%
+    // background: url('~@/assets/img/login.jpg') no-repeat center top / 100% 100%
 }
 </style>

@@ -32,7 +32,7 @@
             </div>
             <div class="row">
                 <h3>申请人性别：</h3>
-                <p>{{apply.linkSex}}</p>
+                <p>{{sex}}</p>
             </div>
             <div class="row">
                 <h3>申请人联系方式：</h3>
@@ -55,6 +55,18 @@ export default {
             subName: '申请列表',
             toPath: '/apply/list',
             apply: {}
+        }
+    },
+    computed: {
+        sex() {
+            switch (this.apply.linkSex) {
+                case 1: 
+                    return '男'
+                    break
+                case 2: 
+                    return '女'
+                    break
+            }
         }
     },
     created() {

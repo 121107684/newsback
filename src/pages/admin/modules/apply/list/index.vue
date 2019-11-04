@@ -147,6 +147,7 @@ export default {
         getList() {
             getMshipApplypage(this.querys).then(v=>{
                 this.list = v.data;
+                this.querys.totalCount = parseInt(v.page.total, 10); 
                 this.$message({
                     type: 'success',
                     message: v.message[0].details

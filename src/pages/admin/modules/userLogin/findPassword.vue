@@ -36,11 +36,6 @@
                 <div class="footer text-center">
                     <a href="#pablo" class="btn btn-primary btn-round btn-lg btn-block">找回密码</a>
                 </div>
-                <!-- <div class="pull-left">
-                    <h6>
-                        <a href="#pablo" class="link">忘记用户名？点此找回</a>
-                    </h6>
-                </div> -->
                 <div class="pull-right">
                     <h6>
                         <router-link tag="a" class="link" to="/login">返回登录</router-link>
@@ -52,8 +47,40 @@
 </template>
 
 <script>
+import {userLogin} from '@/common/api';
 export default {
-
+     name: "login",
+    data() {
+        return {
+            ruleForm:{
+                username:'test',
+                password:'ud888888'
+            },
+            rules: {
+                username: [
+                    { required: true, message: '请输入账号', trigger: 'change' }
+                ],
+                password: [
+                    { required: true, message: '请输入密码', trigger: 'blur' },
+                    { min:6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur' }
+                ]
+            }
+        };
+    },
+    methods: {
+        submiForm () {
+            userModifyPwd(this.ruleForm).then(v=>{
+                let date = new Date();
+                date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
+                document.cookie = `accessToken="${v.data.accessToken}"; expires=${date.toUTCString()}`;
+                document.cookie = `name="${v.data.name}"; expires=${date.toUTCString()}`;
+                document.cookie = `role="${v.data.role}"; expires=${date.toUTCString()}`;
+                this.$router.push({
+                    path: '/'
+                });
+            })
+        }
+    }
 }
 </script>
 
