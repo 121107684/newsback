@@ -21,7 +21,7 @@ const list = {
 };
 const detail = {
     path: 'detail',
-    name: 'detail',
+    name: 'newDetail',
     meta: {
         requiresAuth: true
     },
@@ -264,7 +264,7 @@ const about = {
     meta: {
         requiresAuth: true
     },
-    redirect: 'apply/introduce',
+    redirect: 'about/introduce',
     children: [introduce, leader, expert, works, company, set, branch],
     component(resolve) {
         require.ensure([], () => resolve(require('../modules/index/about')));

@@ -43,7 +43,7 @@ module.exports = {
         disableHostCheck: true,
         proxy: {
             '/': {
-                target: 'http://47.92.175.76:8081',
+                target: 'http://lyxh.dev.jingbaotech.com',
                 changeOrigin: true
             }
         }

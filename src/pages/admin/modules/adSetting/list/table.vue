@@ -2,7 +2,7 @@
     <div>
         <el-button class="mb16"  @click="editAd('add')" type="primary" icon="el-icon-plus">添加</el-button>
         <el-row :gutter="20">
-            <el-col :span="8" v-for="(o) in 5" :key="o">
+            <el-col :span="8" v-for="(o) in list" :key="o">
                 <el-card :body-style="{ padding: '0px' }">
                 <img src="hamburger.png" class="image">
                 <div style="padding: 14px;">
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {getAdDel} from '@/common/api';
+import {getAdDel, getAdPage} from '@/common/api';
 export default {
     props: {
         list:Array
@@ -73,7 +73,7 @@ export default {
                     message: '已取消删除'
                 });          
             });
-        } 
+        }
     }
 }
 </script>

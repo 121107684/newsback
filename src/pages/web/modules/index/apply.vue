@@ -23,13 +23,29 @@ export default {
         [Menu.name]: Menu,
         [MenuItem.name]: MenuItem
     },
+    data() {
+        return {
+             activeIndex: 'constitution'
+        }
+    },
     methods: {
-      handleSelect(key, keyPath) {
-        this.$router.push({
-            name: key
-        });
-      }
-    }
+        handleSelect(key, keyPath) {
+            this.$router.push({
+                name: key
+            });
+        }
+    },
+    watch:{
+        $route:{
+            handler(newRouter){
+                try {
+                    console.debug(newRouter);
+                    let path = newRouter.path.match(/\/(\S*)\//)[1];
+                    this.activeIndex = path
+                } catch {}
+            }
+        }
+    },
 }
 </script>
 

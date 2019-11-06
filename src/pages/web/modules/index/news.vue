@@ -38,13 +38,19 @@ export default {
     watch:{
         $route:{
             handler(newRouter){
-               try {
+                try {
                     let path = newRouter.path.match(/\/(\S*)\//)[1];
                     this.activeIndex = path
                 } catch {}
             }
         }
-    }
+    },
+    mounted() {
+        try {
+            let path = this.$route.path.match(/\/(\S*)\//)[1];
+            this.activeIndex = path
+        } catch {}
+    },
 }
 </script>
 

@@ -28,15 +28,17 @@
         <el-input v-model="ruleForm.linkTel"></el-input>
     </el-form-item>
     <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
-        <el-button @click="resetForm('ruleForm')">重置</el-button>
+        <el-button type="primary" @click="submitForm">立即创建</el-button>
+        <el-button @click="resetForm">重置</el-button>
     </el-form-item>
 </el-form>
 </template>
 <script>
-import {Button, FormItem, Form, Input, RadioGroup, Radio} from 'element-ui';
+import {Button, FormItem, Form, Input, RadioGroup, Radio, Message} from 'element-ui';
 import {getMshipApply} from '@/common/api';
-import {formatDate} from '@/common/utils'
+import {formatDate} from '@/common/utils';
+import Vue from 'vue';
+Vue.prototype.$message = Message;
   export default {
     components: {
         [Button.name]: Button,
@@ -49,14 +51,14 @@ import {formatDate} from '@/common/utils'
     data() {
       return {
         ruleForm: {
-            companyName: '白杨测试',
-            industry: '白杨测试',
-            area: '白杨测试',
-            corporate: '白杨测试',
-            companyHref: 'www.baidu.com',
-            linkName: '白杨测试',
+            companyName: '',
+            industry: '',
+            area: '',
+            corporate: '',
+            companyHref: '',
+            linkName: '',
             linkSex: 1,
-            linkTel: 18519023323
+            linkTel: ''
         },
         rules: {
             companyName: [
@@ -96,17 +98,21 @@ import {formatDate} from '@/common/utils'
       submitForm() {
         this.$refs.ruleForm.validate((valid) => {
           if (valid) {
-              getMshipApply(Object.assign(this.ruleForm, {applyDate: formatDate(new Date())})).then(v=>{
-                  console.debug(v);
-              })
+                getMshipApply(Object.assign(this.ruleForm, {applyDate: formatDate(new Date())})).then(v=>{
+                    this.$message({
+                        message: v.message[0].details,
+                        type: 'success'
+                    });
+                    this.$refs.ruleForm.resetFields();
+                })
           } else {
             console.log('error submit!!');
             return false;
           }
         });
       },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
+      resetForm() {
+        this.$refs.ruleForm.resetFields();
       }
     }
   }

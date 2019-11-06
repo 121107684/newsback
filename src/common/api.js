@@ -228,14 +228,10 @@ export const getAdPage = (data) => {
         "type": 0
     }
 */
-export const getAdPagePublished = () => {
+export const getAdPagePublished = (data) => {
     return request.post({
         url: '/api/udc/ad/page/published',
-        params: {
-            "pageNum": 1,
-            "pageSize": 10,
-            "type": 0
-          },
+        params: data,
         type:'json'
     });
 };

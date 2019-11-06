@@ -2,87 +2,36 @@
     <div class="list-content">
         <div class="title">{{title}}</div>
         <ul>    
-            <li class="frist">
-                <h2>这里是第一条协会动态新闻的标题</h2>
+            <li @click="routerGo(data)" v-for="data in list.slice(0, 1)" :key="data.id" class="frist">
+                <h2>{{data.title}}</h2>
                 <div class="flex-box">
                     <img src="" alt="">
                     <p>
-                        <span>2019.01.01</span>
+                        <span>{{data.publishDate}}</span>
                         <span>
-                        这里是协会动态的文章摘要
-                        这里是协会动态的文章摘要
-                        这里是协会动态的文章摘要
-                        这里是协会动态的文章摘要
+                        {{data.digest}}
                         </span>
                     </p>
                 </div>
             </li>
-            <li>
+            <li  @click="routerGo(data)"  v-for="data in list.slice(1)" :key="data.id" class="frist">
                 <p>
-                    <span>这里是第一条协会动态新闻的标题</span>
-                    <span>2019.01.01  10:00</span>
-                </p>
-            </li>
-             <li>
-                <p>
-                    <span>这里是第一条协会动态新闻的标题</span>
-                    <span>2019.01.01  10:00</span>
-                </p>
-            </li>
-             <li>
-                <p>
-                    <span>这里是第一条协会动态新闻的标题</span>
-                    <span>2019.01.01  10:00</span>
-                </p>
-            </li>
-            <li>
-                <p>
-                    <span>这里是第一条协会动态新闻的标题</span>
-                    <span>2019.01.01  10:00</span>
-                </p>
-            </li>
-             <li>
-                <p>
-                    <span>这里是第一条协会动态新闻的标题</span>
-                    <span>2019.01.01  10:00</span>
-                </p>
-            </li>
-             <li>
-                <p>
-                    <span>这里是第一条协会动态新闻的标题</span>
-                    <span>2019.01.01  10:00</span>
-                </p>
-            </li>
-            <li>
-                <p>
-                    <span>这里是第一条协会动态新闻的标题</span>
-                    <span>2019.01.01  10:00</span>
-                </p>
-            </li>
-             <li>
-                <p>
-                    <span>这里是第一条协会动态新闻的标题</span>
-                    <span>2019.01.01  10:00</span>
-                </p>
-            </li>
-             <li>
-                <p>
-                    <span>这里是第一条协会动态新闻的标题</span>
-                    <span>2019.01.01  10:00</span>
+                    <span>{{data.title}}</span>
+                    <span>{{data.publishDate}}</span>
                 </p>
             </li>
         </ul>
         <el-pagination
             class="page"
             layout="prev, pager, next"
-            :total="50">
+            :total="query.total">
         </el-pagination>
     </div>
 </template>
 
 <script>
 import { Pagination } from 'element-ui';
-import { getAdPagePublished} from '@/common/api';
+import { getNewsPagePublished} from '@/common/api';
 import { newsType} from '@/common/config';
 export default {
     components: {
@@ -90,24 +39,64 @@ export default {
     },
     data() {
         return {
-            title: ''
+            title: '',
+            list: [],
+            code: '',
+            query: {
+                type: 1,
+                pageNum: 1,
+                pageSize: 10,
+                total: 0
+            }
         }
     },
     mounted() {
         let path = this.$route.path.match(/\/(\S*)\//)[1];
-        this.title = newsType.filter(v=>{
+        let arr =  newsType.filter(v=>{
             return v.code === path
-        })[0].name;
+        })[0]
+        this.title = arr.name;
+        this.code = arr.code;
+        this.query.type = arr.keys;
+        this.getList();
+    },
+    methods: {
+        getList(){
+            getNewsPagePublished(this.query).then(v=>{
+               this.list = v.data,
+               this.total = v.page.total
+            })
+        },
+        routerGo(data) {
+            this.$router.push({
+                path: `/${this.code}/detail`,
+                query: {
+                    id:data.id
+                }
+            });
+        }
     },
     watch:{
         $route:{
             handler(newRouter){
-               try {
-                    let path = newRouter.path.match(/\/(\S*)\//)[1];
-                    this.title = newsType.filter(v=>{
-                        return v.code === path
-                    })[0].name;
-                } catch {}
+                let path = newRouter.path.match(/\/(\S*)\//)[1];
+                let arr =  newsType.filter(v=>{
+                    return v.code === path
+                })[0]
+                this.title = arr.name;
+                this.code = arr.code;
+                this.query.type = arr.keys;
+                this.getList();
+            //    try {
+            //         let path = newRouter.path.match(/\/(\S*)\//)[1];
+            //         let arr =  newsType.filter(v=>{
+            //             return v.code === path
+            //         })[0]
+            //         console.debug(arr);
+            //         this.title = arr.name;
+            //         this.query.type = arr.keys;
+            //         this.getList()
+            //     } catch {}
             }
         }
     }

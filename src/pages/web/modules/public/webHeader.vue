@@ -48,7 +48,9 @@
                     try {
                         let path = newRouter.path.match(/\/(\S*)\//)[1];
                         this.activeIndex = path
-                    } catch {}
+                    } catch {
+                        this.activeIndex = 'index'
+                    }
                 }
             }
         }

@@ -142,7 +142,7 @@ export default {
         },
         statusShow(data) {
             console.debug(data.status, this.cookieRole);
-            return data.status === 0 && this.cookieRole === 1
+            return data.status === 1 && this.cookieRole === 1
         }
     }
 }

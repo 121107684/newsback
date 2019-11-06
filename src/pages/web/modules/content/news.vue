@@ -6,56 +6,23 @@
         <div class="content-box">
             <h4 class="title"><span>产业研究</span></h4>
             <ul> 
-                <li>
-                    这里是第一条协会动态新闻的标题
-                </li>
-                <li>
-                    这里是第一条协会动态新闻的标题
-                </li>
-                <li>
-                    这里是第一条协会动态新闻的标题
-                </li>
-                <li>
-                    这里是第一条协会动态新闻的标题
-                </li>
-                <li>
-                    这里是第一条协会动态新闻的标题
-                </li>
-                <li>
-                    这里是第一条协会动态新闻的标题
-                </li>
-                <li>
-                    这里是第一条协会动态新闻的标题
+                 <li v-for="data in typeThree" :key="data.id">
+                    <span>{{data.title}}</span>
+                    <span>{{data.publishDate}}</span>
                 </li>
             </ul>
-            <a href="">查看更多》</a>
+            <router-link tag="a" class="link" to="/industry/list">查看更多》</router-link>
         </div>
         <div class="content-box">
             <h4 class="title"><span>党建工作</span></h4>
             <ul> 
-                <li>
-                    这里是第一条协会动态新闻的标题
+                <li v-for="data in typeFour" :key="data.id">
+                   <span>{{data.title}}</span>
+                    <span>{{data.publishDate}}</span>
                 </li>
-                <li>
-                    这里是第一条协会动态新闻的标题
-                </li>
-                <li>
-                    这里是第一条协会动态新闻的标题
-                </li>
-                <li>
-                    这里是第一条协会动态新闻的标题
-                </li>
-                <li>
-                    这里是第一条协会动态新闻的标题
-                </li>
-                <li>
-                    这里是第一条协会动态新闻的标题
-                </li>
-                <li>
-                    这里是第一条协会动态新闻的标题
-                </li>
+                
             </ul>
-            <a href="">查看更多》</a>
+            <router-link tag="a" class="link" to="/party/list">查看更多》</router-link>
         </div>
     </div>
 </template>
@@ -64,22 +31,25 @@
 import { getNewsPagePublished} from '@/common/api';
 export default {
     data() {
-        return {}
+        return {
+            typeThree: [],
+            typeFour: []
+        }
     },
     created() {
         getNewsPagePublished({
             pageNum: 1,
-            pageSize: 3,
+            pageSize: 7,
             type: 3
         }).then(v=>{
-            console.debug(v)
+            this.typeThree = v.data;
         })
         getNewsPagePublished({
             pageNum: 1,
-            pageSize: 3,
+            pageSize: 7,
             type: 4
         }).then(v=>{
-            console.debug(v)
+            this.typeFour = v.data;
         })
     }
 }
@@ -122,6 +92,24 @@ export default {
             li
                 font-size 16px
                 line-height 26px
+                height 26px
+                border-bottom 1px dotted #2777E2
+                cursor pointer
+                span:nth-child(1)
+                    font-size 14px
+                    width 140px
+                    display inline-block
+                    overflow hidden
+                    white-space nowrap
+                    text-overflow ellipsis
+                span:nth-child(2)
+                    width 110px
+                    font-size 12px
+                    display inline-block
+                    overflow hidden
+                    white-space nowrap
+                &:hover
+                    background-color rgba(0, 0, 0, .1)
         >a 
             font-size 14px
             line-height 1.5

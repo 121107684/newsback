@@ -11,7 +11,7 @@ export default {
     },
     computed: {
         type() {
-            return this.row.statue === 1 ? '未发布' : '已发布'
+            return this.row.status === 1 ? '未发布' : '已发布'
         }
     }
 }

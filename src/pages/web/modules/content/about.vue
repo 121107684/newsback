@@ -2,18 +2,10 @@
     <div class="about-box">
         <div class="title"><span>协会介绍</span></div>
         <ul>
-            <li>
-                <img src="" alt="">
-            </li>
-            <li>
-                <img src="" alt="">
-            </li>
-            <li>
-                <img src="" alt="">
-            </li>
-             <li>
-                <img src="" alt="">
-            </li>
+            <router-link tag="li" class="link" to="/about/branch"> </router-link>
+            <router-link tag="li" class="link" to="/about/company"> </router-link>
+            <router-link tag="li" class="link" to="/apply/applypage"> </router-link>
+            <router-link tag="li" class="link" to="/about/introduce"> </router-link>
         </ul>
     </div>
 </template>
@@ -61,6 +53,7 @@ export default {
         padding 0 90px 0px 100px
         li 
             width 120px
+            cursor pointer
         li:nth-child(1)
             background url('~@/assets/img/web/icon1.png') no-repeat center center / 120px auto
         li:nth-child(2)

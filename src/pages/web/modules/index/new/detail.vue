@@ -1,51 +1,14 @@
 <template>
     <div class="detail">
         <div class="title">
-            这里是第一条协会动态新闻的标题
-            <span>2019.01.01</span>
+            {{data.title}}
+            <span>{{data.publishDate}}</span>
         </div>
-        <div class="imgs">
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
+        <div class="imgs" v-for="datas in data.imgDatas" :key="datas.url">
+            <img :src="datas.url" alt="">
         </div>
         <div class="content">
-            
-
-这里是协会动态的正文这里是协会动态的正文
-
-这里是协会动态的正文这里是协会动态的正文
-
-这里是协会动态的正文这里是协会动态的正文
-
-这里是协会动态的正文这里是协会动态的正文
-
-这里是协会动态的正文这里是协会动态的正文
-
-这里是协会动态的正文这里是协会动态的正文
-
-这里是协会动态的正文这里是协会动态的正文
-
-这里是协会动态的正文这里是协会动态的正文
-
-
-这里是协会动态的正文这里是协会动态的正文
-
-这里是协会动态的正文这里是协会动态的正文
-
-这里是协会动态的正文这里是协会动态的正文
-
-这里是协会动态的正文这里是协会动态的正文
-
-这里是协会动态的正文这里是协会动态的正文
-
-这里是协会动态的正文这里是协会动态的正文
-
-这里是协会动态的正文这里是协会动态的正文
-
-这里是协会动态的正文这里是协会动态的正文
-
+            {{data.digest}}
         </div>
         <ul>    
             <li class="frist">
@@ -83,8 +46,20 @@
 </template>
 
 <script>
+import { newsInfo} from '@/common/api';
 export default {
-    
+    data() {
+        return {
+            data: {}
+        }
+    },
+    mounted() {
+        newsInfo({
+            id: parseInt(this.$route.query.id, 10)
+        }).then(v=>{
+            this.data = v.data;
+        })
+    },
 }
 </script>
 
@@ -100,6 +75,11 @@ export default {
             display block
             font-size 16px
             line-height 2
+    .imgs
+        img 
+            display block
+            margin 0 auto 20px
+            width 400px
     >.content
         font-size 16px
         line-height 2

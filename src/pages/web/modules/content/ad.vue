@@ -3,42 +3,34 @@
         <div class="content-box">
             <h4><span>协会要闻</span></h4>
             <ul>    
-                <li class="first">
+                <li v-for="data in typeOne.slice(0, 1)" :key="data.id" class="first">
                     <img src="" alt="">
-                    <p>为深入推进“不忘初心、牢记使命”主题教育，不断增强党员守初心、担使命……</p>
+                    <p>{{data.title}}</p>
                 </li>
                 <li>
-                    <p>
-                        <span>这里是第一条协会动态新闻的标题</span>
-                        <span>2019.01.01  10:00</span>
-                    </p>
-                    <p>
-                        <span>这里是第一条协会动态新闻的标题</span>
-                        <span>2019.01.01  10:00</span>
+                    <p v-for="data in typeOne.slice(1)" :key="data.id">
+                        <span>{{data.title}}</span>
+                        <span>{{data.publishDate}}</span>
                     </p>
                 </li>
             </ul>
-            <a href="">查看更多》</a>
+            <router-link tag="a" class="link" to="/news/list">查看更多》</router-link>
         </div>
         <div class="content-box">
             <h4><span>会员动态</span></h4>
             <ul>    
-                <li class="first">
+                <li v-for="data in typeTwo.slice(0, 1)" :key="data.id" class="first">
                     <img src="" alt="">
-                    <p>为深入推进“不忘初心、牢记使命”主题教育，不断增强党员守初心、担使命……</p>
+                    <p>{{data.title}}</p>
                 </li>
                 <li>
-                    <p>
-                        <span>这里是第一条协会动态新闻的标题</span>
-                        <span>2019.01.01  10:00</span>
-                    </p>
-                    <p>
-                        <span>这里是第一条协会动态新闻的标题</span>
-                        <span>2019.01.01  10:00</span>
+                    <p v-for="data in typeTwo.slice(1)" :key="data.id">
+                        <span>{{data.title}}</span>
+                        <span>{{data.publishDate}}</span>
                     </p>
                 </li>
             </ul>
-            <a href="">查看更多》</a>
+            <router-link tag="a" class="link" to="/menber/list">查看更多》</router-link>
         </div>
     </div>
 </template>
@@ -47,23 +39,25 @@
 import { getNewsPagePublished} from '@/common/api';
 export default {
     data() {
-        return {}
+        return {
+            typeOne: [],
+            typeTwo: []
+        }
     },
     created() {
-        console.debug('111111');
         getNewsPagePublished({
             pageNum: 1,
             pageSize: 3,
             type: 1
         }).then(v=>{
-            console.debug(v)
+            this.typeOne = v.data;
         })
         getNewsPagePublished({
             pageNum: 1,
             pageSize: 3,
             type: 2
         }).then(v=>{
-            console.debug(v)
+            this.typeTwo = v.data;
         })
     }
 }
@@ -115,14 +109,18 @@ export default {
                     width 204px
                     height 115px
                     overflow hidden
+                    border-bottom none
+                    &:hover
+                        background-color transparent
             li 
                 width 100%
+                cursor pointer
                 p 
                     display flex
                     justify-content space-between
                     font-size 16px
-                    line-height 1.5
-                    margin-bottom 8px
+                    line-height 32px
+                    border-bottom 1px dotted #2777E2
                     span:first-child
                         display block
                         width 268px
@@ -130,6 +128,8 @@ export default {
                         display block
                         width 157px  
                         text-align right
+                    &:hover
+                        background-color rgba(0, 0, 0, .1)
         >a 
             font-size 14px
             line-height 1.5
