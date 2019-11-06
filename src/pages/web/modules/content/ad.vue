@@ -3,12 +3,12 @@
         <div class="content-box">
             <h4><span>协会要闻</span></h4>
             <ul>    
-                <li v-for="data in typeOne.slice(0, 1)" :key="data.id" class="first">
+                <li @click="routerGo(data, 'news')" v-for="data in typeOne.slice(0, 1)" :key="data.id" class="first">
                     <img src="" alt="">
                     <p>{{data.title}}</p>
                 </li>
                 <li>
-                    <p v-for="data in typeOne.slice(1)" :key="data.id">
+                    <p @click="routerGo(data, 'news')" v-for="data in typeOne.slice(1)" :key="data.id">
                         <span>{{data.title}}</span>
                         <span>{{data.publishDate}}</span>
                     </p>
@@ -19,12 +19,12 @@
         <div class="content-box">
             <h4><span>会员动态</span></h4>
             <ul>    
-                <li v-for="data in typeTwo.slice(0, 1)" :key="data.id" class="first">
+                <li @click="routerGo(data, 'menber')"  v-for="data in typeTwo.slice(0, 1)" :key="data.id" class="first">
                     <img src="" alt="">
                     <p>{{data.title}}</p>
                 </li>
                 <li>
-                    <p v-for="data in typeTwo.slice(1)" :key="data.id">
+                    <p  @click="routerGo(data, 'menber')" v-for="data in typeTwo.slice(1)" :key="data.id">
                         <span>{{data.title}}</span>
                         <span>{{data.publishDate}}</span>
                     </p>
@@ -59,6 +59,16 @@ export default {
         }).then(v=>{
             this.typeTwo = v.data;
         })
+    },
+    methods: {
+        routerGo(data, key) {
+            this.$router.push({
+                path: `/${key}/detail`,
+                query: {
+                    id:data.id
+                }
+            });
+        }
     }
 }
 </script>

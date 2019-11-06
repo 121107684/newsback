@@ -6,7 +6,7 @@
         <div class="content-box">
             <h4 class="title"><span>产业研究</span></h4>
             <ul> 
-                 <li v-for="data in typeThree" :key="data.id">
+                 <li  @click="routerGo(data, 'industry')" v-for="data in typeThree" :key="data.id">
                     <span>{{data.title}}</span>
                     <span>{{data.publishDate}}</span>
                 </li>
@@ -16,11 +16,10 @@
         <div class="content-box">
             <h4 class="title"><span>党建工作</span></h4>
             <ul> 
-                <li v-for="data in typeFour" :key="data.id">
+                <li  @click="routerGo(data, 'party')" v-for="data in typeFour" :key="data.id">
                    <span>{{data.title}}</span>
                     <span>{{data.publishDate}}</span>
                 </li>
-                
             </ul>
             <router-link tag="a" class="link" to="/party/list">查看更多》</router-link>
         </div>
@@ -51,6 +50,16 @@ export default {
         }).then(v=>{
             this.typeFour = v.data;
         })
+    },
+    methods: {
+        routerGo(data, key) {
+            this.$router.push({
+                path: `/${key}/detail`,
+                query: {
+                    id:data.id
+                }
+            });
+        }
     }
 }
 </script>
