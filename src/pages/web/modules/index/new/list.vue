@@ -2,7 +2,7 @@
     <div class="list-content">
         <div class="title">{{title}}</div>
         <ul>    
-            <li @click="routerGo(data)" v-for="data in list.slice(0, 1)" :key="data.id" class="frist">
+            <li @click="routerGo(data)" v-if="query.pageNum === 1" v-for="data in list.slice(0, 1)" :key="data.id" class="frist">
                 <h2>{{data.title}}</h2>
                 <div class="flex-box">
                     <img src="" alt="">
@@ -14,7 +14,7 @@
                     </p>
                 </div>
             </li>
-            <li  @click="routerGo(data)"  v-for="data in list.slice(1)" :key="data.id" class="frist">
+            <li  @click="routerGo(data)"  v-for="data in pagelist" :key="data.id" class="frist">
                 <p>
                     <span>{{data.title}}</span>
                     <span>{{data.publishDate}}</span>
@@ -22,6 +22,7 @@
             </li>
         </ul>
         <el-pagination
+            @current-change="handleCurrentChange"
             class="page"
             layout="prev, pager, next"
             :total="query.total">
@@ -50,6 +51,16 @@ export default {
             }
         }
     },
+    computed: {
+        pagelist: {
+            get() {
+                if(this.query.pageNum === 1) {
+                    return this.list.slice(1);
+                }
+                return this.list;
+            }
+        }
+    },
     mounted() {
         let path = this.$route.path.match(/\/(\S*)\//)[1];
         let arr =  newsType.filter(v=>{
@@ -64,7 +75,7 @@ export default {
         getList(){
             getNewsPagePublished(this.query).then(v=>{
                this.list = v.data,
-               this.total = v.page.total
+               this.query.total = parseInt(v.page.total, 10)
             })
         },
         routerGo(data) {
@@ -74,6 +85,10 @@ export default {
                     id:data.id
                 }
             });
+        },
+        handleCurrentChange(val) {
+            this.query.pageNum = val;
+            this.getList()
         }
     },
     watch:{

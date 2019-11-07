@@ -64,8 +64,15 @@ export const userModifyPwd = (data) => {
     }
 */
 export const getNewsPage = (data) => {
+    console.debug(data);
+    let url = '';
+    if (data.type) {
+        url = '/api/udc/news/page/Type'
+    } else {
+        url = '/api/udc/news/page'
+    }
     return request.post({
-        url: '/api/udc/news/page',
+        url: url,
         params: data,
         type:'json'
     });
@@ -79,7 +86,7 @@ export const getNewsPage = (data) => {
 */
 export const getNewsPagePublished = (data) => {
     return request.post({
-        url: '/api/udc/news/page/published',
+        url: '/api/udc/news/page/published/type',
         params: data,
         type:'json'
     });

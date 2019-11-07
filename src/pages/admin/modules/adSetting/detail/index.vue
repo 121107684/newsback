@@ -120,8 +120,8 @@ export default {
             getAdInfo({
                 id:  this.$route.query.id
             }).then(v=>{
-                Object.keys(v).forEach(key=>{
-                    this.ruleForm[key] = v[key]
+                Object.keys(v.data).forEach(key=>{
+                    this.ruleForm[key] = v.data[key]
                 })
             })
         }

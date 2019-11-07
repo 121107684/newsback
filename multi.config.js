@@ -15,12 +15,10 @@ const onlyOne =  {
         template: 'public/index.html'
     }
 }
-console.debug(files);
 // 配置pages多页面获取当前文件夹下的html和js
 function getEntry(globPath) {
     const entries = {};
     return glob.sync(globPath).reduce((result, entry) => {
-        console.debug(result, entry, 'aaaaa')
         let basename = path.basename(entry, path.extname(entry));
         const tmp = entry.split('/').splice(-3);
 

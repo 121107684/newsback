@@ -37,7 +37,6 @@ module.exports = (app) => {
                 }, 300);
                 return;
             } catch (e) {
-                console.error(e);
                 res.json(resBaseData);
             }
             return;

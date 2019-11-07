@@ -1,18 +1,88 @@
 <template>
 <div class="add-thumb">
     <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
-        <swiper-slide class="slide-1">1</swiper-slide>
-        <swiper-slide class="slide-2">2</swiper-slide>
-        <swiper-slide class="slide-3">3</swiper-slide>
-        <swiper-slide class="slide-4">4</swiper-slide>
-        <swiper-slide class="slide-5">5</swiper-slide>
+        <swiper-slide class="slide-big">
+            <el-image class="hei100" :src="'http://47.92.175.76:8081/api/udc/file/get?key=default/f918f6089a7ebbccd0776fd4dc9caa0d/618273.jpg'">
+                <div slot="error" class="image-slot">
+                    <i class="el-icon-picture-outline"></i>
+                </div>
+            </el-image>
+            <div class="title">愿你一生有山可靠，有树可栖。春赏花，夏纳凉，秋登山，冬扫雪。</div>
+        </swiper-slide>
+        <swiper-slide class="slide-big">
+            <el-image class="hei100"  :src="'http://47.92.175.76:8081/api/udc/file/get?key=default/0c2caffd3c0f5969435d299d51f8b168/044344.jpg'">
+                <div slot="error" class="image-slot">
+                    <i class="el-icon-picture-outline"></i>
+                </div>
+            </el-image>
+            <div class="title">枫叶千枝复万枝，江桥掩映暮帆迟。忆君心似西江水，日夜东流无歇时。</div>
+        </swiper-slide>
+        <swiper-slide class="slide-big">
+            <el-image class="hei100"  :src="'http://47.92.175.76:8081/api/udc/file/get?key=default/552e2a6141ce846f4c6d2cdb5154cf5e/435424.jpg'">
+                <div slot="error" class="image-slot">
+                    <i class="el-icon-picture-outline"></i>
+                </div>
+            </el-image>
+            <div class="title">飞花两岸照船红，百里榆堤半日风。卧看满天云不动，不知云与我俱东</div>
+        </swiper-slide>
+        <swiper-slide class="slide-big">
+            <el-image class="hei100"  :src="'http://47.92.175.76:8081/api/udc/file/get?key=default/4ef716ae4d7af584959fbc776269afd3/157575.jpg'">
+                <div slot="error" class="image-slot">
+                    <i class="el-icon-picture-outline"></i>
+                </div>
+            </el-image>
+            <div class="title">想要人生反转走上巅峰，真的没有那么容易。</div>
+        </swiper-slide>
+        <swiper-slide class="slide-big">
+            <el-image class="hei100"  :src="'http://47.92.175.76:8081/api/udc/file/get?key=default/c8c2fdf5efb35b41c8d947ceeef9d36b/850060.jpg'">
+                <div slot="error" class="image-slot">
+                    <i class="el-icon-picture-outline"></i>
+                </div>
+            </el-image>
+            <div class="title">天空没有翅膀的痕迹，而我已经飞过。思念是翅膀飞过的痕迹。</div>
+        </swiper-slide>
     </swiper>
     <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
-        <swiper-slide class="slide-1"></swiper-slide>
-        <swiper-slide class="slide-2"></swiper-slide>
-        <swiper-slide class="slide-3"></swiper-slide>
-        <swiper-slide class="slide-4"></swiper-slide>
-        <swiper-slide class="slide-5"></swiper-slide>
+        <swiper-slide class="slide-small">
+            <el-image class="hei100"  :src="'http://47.92.175.76:8081/api/udc/file/get?key=default/f918f6089a7ebbccd0776fd4dc9caa0d/618273.jpg'">
+                <div slot="error" class="image-slot">
+                    <i class="el-icon-picture-outline"></i>
+                </div>
+            </el-image>
+            <div class="title">愿你一生有山可靠，有树可栖。春赏花，夏纳凉，秋登山，冬扫雪。</div>
+        </swiper-slide>
+        <swiper-slide class="slide-small">
+            <el-image class="hei100"  :src="'http://47.92.175.76:8081/api/udc/file/get?key=default/0c2caffd3c0f5969435d299d51f8b168/044344.jpg'">
+                <div slot="error" class="image-slot">
+                    <i class="el-icon-picture-outline"></i>
+                </div>
+            </el-image>
+            <div class="title">枫叶千枝复万枝，江桥掩映暮帆迟。忆君心似西江水，日夜东流无歇时。</div>
+        </swiper-slide>
+        <swiper-slide class="slide-small">
+            <el-image class="hei100"  :src="'http://47.92.175.76:8081/api/udc/file/get?key=default/552e2a6141ce846f4c6d2cdb5154cf5e/435424.jpg'">
+                <div slot="error" class="image-slot">
+                    <i class="el-icon-picture-outline"></i>
+                </div>
+            </el-image>
+            <div class="title">飞花两岸照船红，百里榆堤半日风。卧看满天云不动，不知云与我俱东</div>
+        </swiper-slide>
+        <swiper-slide class="slide-small">
+            <el-image class="hei100"  :src="'http://47.92.175.76:8081/api/udc/file/get?key=default/4ef716ae4d7af584959fbc776269afd3/157575.jpg'">
+                <div slot="error" class="image-slot">
+                    <i class="el-icon-picture-outline"></i>
+                </div>
+            </el-image>
+            <div class="title">想要人生反转走上巅峰，真的没有那么容易。</div>
+        </swiper-slide>
+        <swiper-slide class="slide-small">
+            <el-image class="hei100"  :src="'http://47.92.175.76:8081/api/udc/file/get?key=default/c8c2fdf5efb35b41c8d947ceeef9d36b/850060.jpg'">
+                <div slot="error" class="image-slot">
+                    <i class="el-icon-picture-outline"></i>
+                </div>
+            </el-image>
+            <div class="title">天空没有翅膀的痕迹，而我已经飞过。思念是翅膀飞过的痕迹。</div>
+        </swiper-slide>
     </swiper>
 </div>
     
@@ -22,26 +92,32 @@
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import { getAdPagePublished} from '@/common/api';
+import { Image } from 'element-ui';
 export default {
     components: {
         swiper,
-        swiperSlide
+        swiperSlide,
+        [Image.name]: Image
     },
     data() {
       return {
         swiperOptionTop: {
-          spaceBetween: 10,
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-          }
+            spaceBetween: 10,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+            }
         },
         swiperOptionThumbs: {
             spaceBetween: 10,
             centeredSlides: true,
             slidesPerView: 'auto',
             touchRatio: 0.2,
-            slideToClickedSlide: true
+            slideToClickedSlide: true,
+            autoplay: {
+                delay: 3000,
+                stopOnLastSlide: false
+            }
         }
             // swiperOptionTop: {
             //     renderBullet: function (index, className) {
@@ -113,4 +189,44 @@ export default {
 .gallery-thumbs .swiper-slide-active {
     opacity: 1;
 }
+.slide-big
+    position relative
+    img
+        display block
+        width 100%
+        height 100%
+    .title
+        position absolute
+        bottom 0px
+        left 0px
+        right 0px
+        height 48px
+        background-color rgba(0, 0, 0, .5)
+        color #ffffff
+        line-height 48px
+        text-indent 2em
+        font-size 20px
+.slide-small
+    position relative
+    img
+        display block
+        width 100%
+        height 100%
+    .title
+        position absolute
+        bottom 0px
+        left 0px
+        right 0px
+        height 20px
+        background-color rgba(0, 0, 0, .5)
+        color #ffffff
+        line-height 20px
+        font-size 12px
+        text-indent 8px
+        text-overflow ellipsis
+        white-space nowrap
+        overflow hidden
+        width 100%
+.hei100
+    height 100%
 </style>
