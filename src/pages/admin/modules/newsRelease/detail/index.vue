@@ -19,7 +19,7 @@
             <el-option v-for="data in newsType" :key="data.name" :label="data.name" :value="data.keys"></el-option>
             </el-select>
         </el-form-item>
-        <el-form-item label="发布时间" prop="publishDate">
+        <!-- <el-form-item label="发布时间" prop="publishDate">
             <el-date-picker
                 v-model="ruleForm.publishDate"
                 type="date"
@@ -27,7 +27,7 @@
                 format="yyyy-MM-dd"
                 value-format="yyyy-MM-dd">
             </el-date-picker>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="新闻配图" prop="imgDatas">
                 <transition-group class="images" tag="div" name="flip-list">
                     <div class="mb8 imgbox mr12" v-for="(item, index) in ruleForm.imgDatas" :key="item.fileKey">

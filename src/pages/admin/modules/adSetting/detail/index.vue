@@ -15,7 +15,7 @@
             <pic-upload @uploadSuccess="uploadSucess" :showIng="true"></pic-upload>
             <p>图片大小推荐使用1024*128</p>
         </el-form-item>
-        <el-form-item label="发布时间" prop="publishDate">
+        <!-- <el-form-item label="发布时间" prop="publishDate">
             <el-date-picker
                 v-model="ruleForm.publishDate"
                 type="date"
@@ -23,7 +23,7 @@
                 format="yyyy-MM-dd"
                 value-format="yyyy-MM-dd">
             </el-date-picker>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="广告图标题" prop="title">
             <el-input v-model="ruleForm.title"></el-input>
         </el-form-item>

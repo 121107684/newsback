@@ -254,7 +254,18 @@ export const getAdDel = (data) => {
         type:'json'
     });
 };
-
+/* 广告发布
+   params： {
+        "id": "string"
+    }
+*/
+export const getAdPublish = (data) => {
+    return request.post({
+        url: '/api/udc/ad/publish',
+        params: data,
+        type:'json'
+    });
+};
 /* 广告详情
    params： {
         "id": "string"
