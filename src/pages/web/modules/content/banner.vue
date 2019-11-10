@@ -91,7 +91,6 @@
 <script>
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import { getAdPagePublished} from '@/common/api';
 import { Image } from 'element-ui';
 export default {
     components: {
@@ -136,9 +135,6 @@ export default {
             swiperTop.controller.control = swiperThumbs
             swiperThumbs.controller.control = swiperTop
         })
-        // getAdPagePublished().then(v=>{
-        //     console.debug(v)
-        // })
     },
     methods: {
         callback(v) {

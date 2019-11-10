@@ -32,9 +32,12 @@ export default {
     methods: {
         getList() {
             getAdPage(this.querys).then(v=>{
-                this.list = v.data;
+                v.data.map(value=>{
+                    this.list.push(value)
+                })
+                // this.list = v.data;
                 this.querys.totalCount = v.page.pageTotal
-                console.debug(v)
+                // console.debug(v)
             })
         }
     },

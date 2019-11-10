@@ -11,19 +11,16 @@
         ref="ruleForm"
         label-width="100px"
         class="ruleForm">
-        <el-form-item label="广告图" required prop="fileKey">
-            <pic-upload @uploadSuccess="uploadSucess" :showIng="true"></pic-upload>
+        <el-form-item  label="广告图" required prop="fileKey">
+            <div class="clearfix" v-if="ruleForm.imgData.url">
+                <div class="mb8 imgbox mr12">
+                    <img :src="ruleForm.imgData.url" alt="">
+                    <i @click="del()" class="el-icon-delete"></i>
+                </div>
+            </div>
+            <pic-upload v-else @uploadSuccess="uploadSucess" :showIng="true"></pic-upload>
             <p>图片大小推荐使用1024*128</p>
         </el-form-item>
-        <!-- <el-form-item label="发布时间" prop="publishDate">
-            <el-date-picker
-                v-model="ruleForm.publishDate"
-                type="date"
-                placeholder="选择日期"
-                format="yyyy-MM-dd"
-                value-format="yyyy-MM-dd">
-            </el-date-picker>
-        </el-form-item> -->
         <el-form-item label="广告图标题" prop="title">
             <el-input v-model="ruleForm.title"></el-input>
         </el-form-item>
@@ -79,6 +76,9 @@ export default {
         }
     },
     methods: {
+        del() {
+            this.ruleForm.imgData = {}
+        },
         submitForm() {
             this.$refs.ruleForm.validate((valid) => {
                 if (valid) {
@@ -111,11 +111,13 @@ export default {
             });
         },
         uploadSucess(data) {
-            this.ruleForm.imgData = data;
+            Object.keys(data).forEach(v=>{
+                this.ruleForm.imgData[v] = data[v];
+            })
             this.ruleForm.fileKey = data.fileKey;
         },
     },
-     created() {
+    created() {
         if (this.$route.query.type === 'edit') {
             getAdInfo({
                 id:  this.$route.query.id
@@ -129,6 +131,34 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="stylus" scoped>
+.imgbox 
+    width 150px
+    height 150px
+    border 1px dashed #d9d9d9
+    border-radius 6px
+    display block
+    position relative
+    float left
+    img 
+        display block
+        width 100%
+        height 100%
+        background-color #ccc
+    &:hover
+        .el-button
+            display block
+    .el-icon-delete
+        position absolute
+        top 4px
+        right 4px
+        width 24px
+        height 24px
+        background-color rgba(0,0,0,0.5)
+        text-align center
+        line-height 24px
+        color #fff
+        cursor pointer
+        &:hover 
+            color red
 </style>

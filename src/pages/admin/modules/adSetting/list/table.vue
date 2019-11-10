@@ -2,9 +2,9 @@
     <div>
         <el-button class="mb16"  @click="editAd('add')" type="primary" icon="el-icon-plus">添加</el-button>
         <el-row :gutter="20">
-            <el-col class="mb20" :span="8" v-for="(o) in list" :key="o.id">
+            <el-col class="mb20" :span="8" v-for="o in list" :key="o.id">
                 <el-card :body-style="{ padding: '0px' }">
-                <img src="hamburger.png" alt="广告图" class="image">
+                <img :src="imgurl(o.imgData)" alt="广告图" class="image">
                 <div style="padding: 14px;">
                     <span class="title"> {{o.title}} </span>
                     <div class="bottom clearfix">
@@ -25,14 +25,20 @@
 import {getAdDel, getAdPage, getAdPublish} from '@/common/api';
 export default {
     props: {
-        list:Array
+        list:Array,
+        default: ()=> []
     },
     data() {
         return {
         }
     },
     methods: {
-        onSubmit() {},
+        imgurl(v) {
+            if (v.url) {
+                return v.url
+            }
+            return ''
+        },
         editAd(type, id=null) {
             if (this.list.length >=5 && type === 'add') {
                 this.$message({

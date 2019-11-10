@@ -9,10 +9,24 @@
 <script>
 import webHeader from './modules/public/webHeader'
 import webFooter from './modules/public/webFooter'
+import watcher from '@/common/watcher';
+import {Message} from 'element-ui';
+import Vue from 'vue';
+Vue.prototype.$message = Message;
 export default {
     components: {
         webHeader,
         webFooter
+    },
+    async created() {
+        watcher.watch({
+            show: (err) => {
+                this.$message.error(err);
+            },
+            goRouter: (data) =>{
+                this.$router.push(data);
+            }
+        });
     }
 }
 </script>

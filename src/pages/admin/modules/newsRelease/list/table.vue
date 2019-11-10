@@ -141,7 +141,6 @@ export default {
             });
         },
         statusShow(data) {
-            console.debug(data.status, this.cookieRole);
             return data.status === 1 && this.cookieRole === 1
         }
     }

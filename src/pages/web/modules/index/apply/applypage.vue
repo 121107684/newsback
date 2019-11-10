@@ -106,7 +106,6 @@ Vue.prototype.$message = Message;
                     this.$refs.ruleForm.resetFields();
                 })
           } else {
-            console.log('error submit!!');
             return false;
           }
         });

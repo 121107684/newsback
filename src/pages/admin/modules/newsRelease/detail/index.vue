@@ -32,6 +32,7 @@
                 <transition-group class="images" tag="div" name="flip-list">
                     <div class="mb8 imgbox mr12" v-for="(item, index) in ruleForm.imgDatas" :key="item.fileKey">
                         <img :src="item.url" alt="">
+                        <i @click="del(index)" class="el-icon-delete"></i>
                         <el-button
                             v-if="index !== 0"
                             class="left is-circle" type="primary"
@@ -136,7 +137,6 @@ export default {
                             break;
                     }
                 } else {
-                    console.log("error submit!!");
                     return false;
                 }
             });
@@ -146,6 +146,9 @@ export default {
                 path: 'list',
                 name: 'newsReleaseList',
             });
+        },
+        del(index) {
+            this.ruleForm.imgDatas.splice(index, 1)
         },
         resetForm(formName) {
             this.$refs[formName].resetFields();
@@ -197,6 +200,19 @@ export default {
             &:hover
                 .el-button
                     display block
+            .el-icon-delete
+                position absolute
+                top 4px
+                right 4px
+                width 24px
+                height 24px
+                background-color rgba(0,0,0,0.5)
+                text-align center
+                line-height 24px
+                color #fff
+                cursor pointer
+                &:hover 
+                    color red
         .el-button
             width 40px
             height 40px

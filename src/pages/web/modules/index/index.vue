@@ -14,6 +14,7 @@ import webAd from '../content/ad'
 import webAbout from '../content/about'
 import webNews from '../content/news'
 import webFriends from '../content/friends'
+import { getAdPagePublished} from '@/common/api';
 export default {
     components: {
         webBanner,
@@ -21,7 +22,13 @@ export default {
         webAbout,
         webNews,
         webFriends
-    }
+    },
+    mounted() {
+        getAdPagePublished().then(v=>{
+            console.debug(v)
+        }) 
+    },
+    
 }
 </script>
 

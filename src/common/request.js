@@ -33,7 +33,6 @@ function request(method, {url, headers = {}, params = {}, type}) {
         Object.assign(cookies, {accessToken: getCookie('accessToken').replace(/\"/g, "")})
     }
     const formParams = objToParams(params);
-    console.debug(formParams); 
     if (method === 'get' && formParams) {
         url += `?${formParams}`;
     } else if (method === 'post' && formParams && cookies.accessToken) {

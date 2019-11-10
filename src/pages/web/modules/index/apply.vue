@@ -39,7 +39,6 @@ export default {
         $route:{
             handler(newRouter){
                 try {
-                    console.debug(newRouter);
                     let path = newRouter.path.match(/\/(\S*)\//)[1];
                     this.activeIndex = path
                 } catch {}

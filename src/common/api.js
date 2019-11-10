@@ -64,7 +64,6 @@ export const userModifyPwd = (data) => {
     }
 */
 export const getNewsPage = (data) => {
-    console.debug(data);
     let url = '';
     if (data.type) {
         url = '/api/udc/news/page/Type'

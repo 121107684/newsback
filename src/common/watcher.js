@@ -29,6 +29,7 @@ export default {
                 case 401:
                     break;
                 default:
+                    
                     setTimeout(() => {
                         uiAlert.show(data.message[0].details || '请求失败');
                     }, 300);
