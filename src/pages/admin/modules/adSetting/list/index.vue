@@ -31,6 +31,7 @@ export default {
     },
     methods: {
         getList() {
+            this.list = [];
             getAdPage(this.querys).then(v=>{
                 v.data.map(value=>{
                     this.list.push(value)

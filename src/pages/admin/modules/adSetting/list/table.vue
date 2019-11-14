@@ -8,7 +8,7 @@
                 <div style="padding: 14px;">
                     <span class="title"> {{o.title}} </span>
                     <div class="bottom clearfix">
-                    <el-button v-if="o.status === 1" type="text" @click="publishedAd(o.id)" class="button">发布</el-button>
+                    <el-button v-if="o.status === 0" type="text" @click="publishedAd(o.id)" class="button">发布</el-button>
                     <el-button type="text" @click="editAd('edit', o.id)" class="button">编辑</el-button>
                     <el-button type="text" @click="delAd(o.id)" class="button">删除</el-button>
                     <b v-if="o.status === 2">【已发布】</b>

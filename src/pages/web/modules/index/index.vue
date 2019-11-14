@@ -1,9 +1,9 @@
 <template>
     <div class="banner">
         <web-banner></web-banner>
-        <web-ad></web-ad>
+        <web-ad :adList="adList"></web-ad>
         <web-about></web-about>
-        <web-news></web-news>
+        <web-news :adList="adList"></web-news>
         <web-friends></web-friends>
     </div>
 </template>
@@ -23,9 +23,17 @@ export default {
         webNews,
         webFriends
     },
+    data() {
+        return {
+            adList: []
+        }
+    },
     mounted() {
-        getAdPagePublished().then(v=>{
-            console.debug(v)
+        getAdPagePublished({
+            pageNum: 1,
+            pageSize: 10,
+        }).then(v=>{
+            this.adList = v.data
         }) 
     },
     

@@ -2,13 +2,22 @@
     <div class="ad-module">
         <div class="content-box">
             <h4><span>协会要闻</span></h4>
-            <ul>    
-                <li @click="routerGo(data, 'news')" v-for="data in typeOne.slice(0, 1)" :key="data.id" class="first">
-                    <img src="" alt="">
-                    <p>{{data.title}}</p>
+            <ul> 
+                <li class="first">
+                    <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
+                        <swiper-slide  v-for="data in adList" :key="data.id" class="slide-ad">
+                            <el-image  @click="windowOpen(data.url)" class="adimg" :src="data.imgData.url">
+                                <div slot="error" class="image-slot">
+                                    <i class="el-icon-picture-outline"></i>
+                                </div>
+                            </el-image>
+                            <!-- <img :src="data.imgData.url" alt=""> -->
+                            <p  @click="windowOpen(data.url)">{{data.title}}</p>
+                        </swiper-slide>
+                    </swiper>
                 </li>
                 <li>
-                    <p @click="routerGo(data, 'news')" v-for="data in typeOne.slice(1)" :key="data.id">
+                    <p @click="routerGo(data, 'news')" v-for="data in typeOne" :key="data.id">
                         <span>{{data.title}}</span>
                         <span>{{data.publishDate}}</span>
                     </p>
@@ -19,12 +28,12 @@
         <div class="content-box">
             <h4><span>会员动态</span></h4>
             <ul>    
-                <li @click="routerGo(data, 'menber')"  v-for="data in typeTwo.slice(0, 1)" :key="data.id" class="first">
-                    <img src="" alt="">
+                <!-- <li @click="windowOpen(data.url)" v-for="data in adList.slice(1, 2)" :key="data.id" class="first">
+                    <img :src="data.imgData.url" alt="">
                     <p>{{data.title}}</p>
-                </li>
+                </li> -->
                 <li>
-                    <p  @click="routerGo(data, 'menber')" v-for="data in typeTwo.slice(1)" :key="data.id">
+                    <p  @click="routerGo(data, 'menber')" v-for="data in typeTwo" :key="data.id">
                         <span>{{data.title}}</span>
                         <span>{{data.publishDate}}</span>
                     </p>
@@ -36,10 +45,32 @@
 </template>
 
 <script>
+import 'swiper/dist/css/swiper.css'
 import { getNewsPagePublished} from '@/common/api';
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import { Image } from 'element-ui';
 export default {
+    props: {
+        adList: Array
+    },
+    components: {
+        swiper,
+        swiperSlide,
+        [Image.name]: Image
+    },
     data() {
         return {
+            swiperOptionTop: {
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev'
+                },
+                autoplay: {
+                    delay: 3000,
+                    stopOnLastSlide: false
+                }
+            },
             typeOne: [],
             typeTwo: []
         }
@@ -68,12 +99,17 @@ export default {
                     id:data.id
                 }
             });
+        },
+        windowOpen(url){
+            console.debug(url);
+            window.open(url)
         }
     }
 }
 </script>
 
 <style lang="stylus" scoped>
+
 .ad-module
     height 350px
     padding 33px 114px
@@ -110,7 +146,12 @@ export default {
                 display flex
                 justify-content space-between
                 padding-bottom 12px
-                img 
+                .gallery-top
+                    width 100%
+                .slide-ad
+                    display flex
+                    justify-content space-between
+                .adimg 
                     display block
                     width 260px
                     height 155px
