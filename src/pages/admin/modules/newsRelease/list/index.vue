@@ -69,7 +69,8 @@ export default {
         getList() {
             getNewsPage(this.querys).then(v=>{
                 this.list = v.data;
-                this.querys.totalCount = parseInt(v.page.total, 10); 
+                this.querys.totalCount = parseInt(v.page.total, 10);
+                this.querys.pageNum = 1
             })
         }
     },

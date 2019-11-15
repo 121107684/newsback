@@ -148,6 +148,9 @@ export default {
                         display block
                         font-size 16px
                         padding-bottom 20px
+                    span:nth-child(2)
+                        overflow hidden
+                        height 190px
         li 
             font-size 16px
             padding-bottom 20px
