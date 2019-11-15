@@ -1,7 +1,16 @@
 <template>
     <div class="news-box">
         <div class="imgs">
-            <img src="" alt="">
+            <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
+                <swiper-slide class="slide-big" v-for="(item, index) in adList" :key="index">
+                    <el-image class="img-style" :src="item.imgData.url">
+                        <div slot="error" class="image-slot">
+                            <i class="el-icon-picture-outline"></i>
+                        </div>
+                    </el-image>
+                    <div class="title">{{item.title}}</div>
+                </swiper-slide>
+            </swiper>
         </div>
         <div class="content-box">
             <h4 class="title"><span>产业研究</span></h4>
@@ -27,12 +36,31 @@
 </template>
 
 <script>
-import { getNewsPagePublished} from '@/common/api';
+import { getNewsPagePublished, getAdPagePublished} from '@/common/api';
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import { Image } from 'element-ui';
 export default {
+    components: {
+        swiper,
+        swiperSlide,
+        [Image.name]: Image
+    },
     data() {
         return {
             typeThree: [],
-            typeFour: []
+            typeFour: [],
+            adList: [],
+            swiperOptionTop: {
+                spaceBetween: 0,
+                // navigation: {
+                //     nextEl: '.swiper-button-next',
+                //     prevEl: '.swiper-button-prev'
+                // },
+                autoplay: {
+                    delay: 3000,
+                    stopOnLastSlide: false
+                }
+            },
         }
     },
     created() {
@@ -50,6 +78,12 @@ export default {
         }).then(v=>{
             this.typeFour = v.data;
         })
+        getAdPagePublished({
+            pageNum: 1,
+            pageSize: 10,
+        }).then(v=>{
+            this.adList = v.data
+        }) 
     },
     methods: {
         routerGo(data, key) {
@@ -74,6 +108,26 @@ export default {
         height 285px
         background-color #ccc
         margin-right 37px
+        .gallery-top 
+            width 485px
+            height 285px
+            display block
+            position relative
+            .img-style
+                display block
+                width 100%
+                height 100%
+            .title
+                position absolute
+                bottom 0px
+                left 0px
+                right 0px
+                height 30px
+                background-color rgba(0, 0, 0, .5)
+                color #ffffff
+                line-height 30px
+                text-indent 1em
+                font-size 16px
     .content-box
         width 268px
         >h4

@@ -3,21 +3,13 @@
         <div class="content-box">
             <h4><span>协会要闻</span></h4>
             <ul> 
-                <li class="first">
-                    <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
-                        <swiper-slide  v-for="data in adList" :key="data.id" class="slide-ad">
-                            <el-image  @click="windowOpen(data.url)" class="adimg" :src="data.imgData.url">
-                                <div slot="error" class="image-slot">
-                                    <i class="el-icon-picture-outline"></i>
-                                </div>
-                            </el-image>
-                            <!-- <img :src="data.imgData.url" alt=""> -->
-                            <p  @click="windowOpen(data.url)">{{data.title}}</p>
-                        </swiper-slide>
-                    </swiper>
+                <li @click="windowOpen(data.url)" v-for="data in typeOne.slice(0, 1)" :key="data.id" class="first">
+                    <!-- <img class="adimg" :src="data.imgDatas[0].url" alt=""> -->
+                    <img  class="adimg" src="" alt="这里返回一个图片合适">
+                    <p>{{data.title}}</p>
                 </li>
-                <li>
-                    <p @click="routerGo(data, 'news')" v-for="data in typeOne" :key="data.id">
+                <li  v-if="typeOne.length>2"> 
+                    <p @click="routerGo(data, 'news')" v-for="data in typeOne.slice(1, 10)" :key="data.id">
                         <span>{{data.title}}</span>
                         <span>{{data.publishDate}}</span>
                     </p>
@@ -28,12 +20,13 @@
         <div class="content-box">
             <h4><span>会员动态</span></h4>
             <ul>    
-                <!-- <li @click="windowOpen(data.url)" v-for="data in adList.slice(1, 2)" :key="data.id" class="first">
-                    <img :src="data.imgData.url" alt="">
+                <li @click="windowOpen(data.url)" v-for="data in typeTwo.slice(0, 1)" :key="data.id" class="first">
+                    <!-- <img  class="adimg" :src="data.imgData.url" alt=""> -->
+                    <img class="adimg" src="" alt="这里返回一个图片合适">
                     <p>{{data.title}}</p>
-                </li> -->
-                <li>
-                    <p  @click="routerGo(data, 'menber')" v-for="data in typeTwo" :key="data.id">
+                </li>
+                <li  v-if="typeTwo.length>2">
+                    <p  @click="routerGo(data, 'menber')" v-for="data in typeTwo.slice(1)" :key="data.id">
                         <span>{{data.title}}</span>
                         <span>{{data.publishDate}}</span>
                     </p>
@@ -101,7 +94,6 @@ export default {
             });
         },
         windowOpen(url){
-            console.debug(url);
             window.open(url)
         }
     }
@@ -146,11 +138,6 @@ export default {
                 display flex
                 justify-content space-between
                 padding-bottom 12px
-                .gallery-top
-                    width 100%
-                .slide-ad
-                    display flex
-                    justify-content space-between
                 .adimg 
                     display block
                     width 260px
