@@ -3,7 +3,7 @@
         <div class="imgs">
             <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
                 <swiper-slide class="slide-big" v-for="(item, index) in adList" :key="index">
-                    <el-image class="img-style" :src="item.imgData.url">
+                    <el-image @click="windowOpen(item)" class="img-style" :src="item.imgData.url">
                         <div slot="error" class="image-slot">
                             <i class="el-icon-picture-outline"></i>
                         </div>
@@ -52,10 +52,6 @@ export default {
             adList: [],
             swiperOptionTop: {
                 spaceBetween: 0,
-                // navigation: {
-                //     nextEl: '.swiper-button-next',
-                //     prevEl: '.swiper-button-prev'
-                // },
                 autoplay: {
                     delay: 3000,
                     stopOnLastSlide: false
@@ -93,6 +89,15 @@ export default {
                     id:data.id
                 }
             });
+        },
+        windowOpen(data){
+            let url = data.url;
+            if(url && (url.indexOf('http://') === -1 || url.indexOf('https://') === -1)) {
+                url = `http://${url}`
+                window.open(url)
+            } else if (url) {
+                window.open(url)
+            }
         }
     }
 }

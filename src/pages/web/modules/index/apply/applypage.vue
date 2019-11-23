@@ -18,12 +18,12 @@
     <el-form-item label="申请人姓名" prop="linkName">
         <el-input v-model="ruleForm.linkName"></el-input>
     </el-form-item>
-    <el-form-item label="申请人性别" prop="linkSex">
+    <!-- <el-form-item label="申请人性别" prop="linkSex">
         <el-radio-group v-model="ruleForm.linkSex">
             <el-radio :label="1">男</el-radio>
             <el-radio :label="2">女</el-radio>
         </el-radio-group>
-    </el-form-item>
+    </el-form-item> -->
     <el-form-item label="申请人联系方式" prop="linkTel">
         <el-input v-model="ruleForm.linkTel"></el-input>
     </el-form-item>
@@ -57,7 +57,7 @@ Vue.prototype.$message = Message;
             corporate: '',
             companyHref: '',
             linkName: '',
-            linkSex: 1,
+            // linkSex: 1,
             linkTel: ''
         },
         rules: {
@@ -85,9 +85,9 @@ Vue.prototype.$message = Message;
                 { required: true, message: '请输入联系人姓名', trigger: 'blur' },
                 { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
             ],
-            linkSex: [
-                { required: true, message: '请选择联系人性别', trigger: 'change' }
-            ],
+            // linkSex: [
+            //     { required: true, message: '请选择联系人性别', trigger: 'change' }
+            // ],
             linkTel: [
                 { required: true, message: '请输入申请人联系方式', trigger: 'blur' }
             ]

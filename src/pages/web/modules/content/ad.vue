@@ -3,9 +3,8 @@
         <div class="content-box">
             <h4><span>协会要闻</span></h4>
             <ul> 
-                <li @click="windowOpen(data.url)" v-for="data in typeOne.slice(0, 1)" :key="data.id" class="first">
-                    <!-- <img class="adimg" :src="data.imgDatas[0].url" alt=""> -->
-                    <img  class="adimg" src="" alt="这里返回一个图片合适">
+                <li @click="routerGo(data, 'news')" v-for="data in typeOne.slice(0, 1)" :key="data.id" class="first">
+                    <img  class="adimg" src="" alt="暂无图片">
                     <p>{{data.title}}</p>
                 </li>
                 <li  v-if="typeOne.length>2"> 
@@ -20,9 +19,9 @@
         <div class="content-box">
             <h4><span>会员动态</span></h4>
             <ul>    
-                <li @click="windowOpen(data.url)" v-for="data in typeTwo.slice(0, 1)" :key="data.id" class="first">
+                <li @click="routerGo(data, 'menber')" v-for="data in typeTwo.slice(0, 1)" :key="data.id" class="first">
                     <!-- <img  class="adimg" :src="data.imgData.url" alt=""> -->
-                    <img class="adimg" src="" alt="这里返回一个图片合适">
+                    <img class="adimg" src="" alt="暂无图片">
                     <p>{{data.title}}</p>
                 </li>
                 <li  v-if="typeTwo.length>2">
@@ -162,6 +161,9 @@ export default {
                     span:first-child
                         display block
                         width 268px
+                        white-space nowrap
+                        text-overflow ellipsis
+                        overflow hidden
                     span:last-child
                         display block
                         width 157px  

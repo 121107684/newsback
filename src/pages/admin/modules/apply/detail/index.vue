@@ -30,10 +30,10 @@
                 <h3>申请人姓名：</h3>
                 <p>{{apply.linkName}}</p>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <h3>申请人性别：</h3>
                 <p>{{sex}}</p>
-            </div>
+            </div> -->
             <div class="row">
                 <h3>申请人联系方式：</h3>
                 <p>{{apply.linkTel}}</p>

@@ -15,7 +15,7 @@
                         </span>
                     </div>
                     <div class="input-group form-group-no-border input-lg input-row-reverse">
-                        <input type="text" v-model="ruleForm.password" placeholder="密码" class="form-control" />
+                        <input type="password" v-model="ruleForm.password" placeholder="密码" class="form-control" />
                         <span class="input-group-addon">
                             <i class="now-ui-icons text_caps-small"></i>
                         </span>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="pull-left">
                     <h6>
-                        <router-link tag="a" class="link" to="login/findpassword">忘记密码？点此找回</router-link>
+                        <!-- <router-link tag="a" class="link" to="login/findpassword">忘记密码？点此找回</router-link> -->
                     </h6>
                 </div>
                 <div class="pull-right">
@@ -35,23 +35,6 @@
                     </h6>
                 </div>
             </form>
-            <!-- <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="content">
-                <el-form-item label-width="75px" size="mini" label="用户名" prop="username" class="input-group form-group-no-border input-lg input-row-reverse">
-                    <el-input class="form-control" v-model="ruleForm.username"></el-input>
-                    <span class="input-group-addon">
-                        <i class="now-ui-icons users_circle-08"></i>
-                    </span>
-                </el-form-item>
-                <el-form-item label-width="75px"  size="mini"  label="密码" prop="password" class="input-group form-group-no-border input-lg input-row-reverse"> 
-                    <el-input class="input-group-addon" type="password" v-model="ruleForm.password"></el-input>
-                    <span class="input-group-addon">
-                        <i class="now-ui-icons text_caps-small"></i>
-                    </span>
-                </el-form-item>
-                <div class="row-block">
-                    <a @click="submiForm" class="btnup">登录</a>
-                </div> 
-            </el-form> -->
         </div>
     </div>
 </template>
@@ -63,8 +46,8 @@ export default {
     data() {
         return {
             ruleForm:{
-                username:'test',
-                password:'ud888888'
+                username:'',
+                password:''
             },
             rules: {
                 username: [
@@ -86,7 +69,8 @@ export default {
                 document.cookie = `name="${v.data.name}"; expires=${date.toUTCString()}`;
                 document.cookie = `role="${v.data.role}"; expires=${date.toUTCString()}`;
                 this.$router.push({
-                    path: '/'
+                    path: '/newsRelease/list',
+                    name: 'newsReleaseList'
                 });
             })
         }

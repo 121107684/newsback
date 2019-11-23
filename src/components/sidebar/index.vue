@@ -27,13 +27,13 @@ export default {
                     return m.substring(1).toUpperCase();
                 });
             }
-            if (routerId !== 'orderManage' && routerId !== 'sellerManage' && routerId !== 'messageTool') {
-                this.strFlag.push(routerId);
-                if (pathArr[2]) {
-                    let pathSecond = pathArr[2].substring(0, 1).toUpperCase() + pathArr[2].substring(1);
-                    routerId += pathSecond;
-                }
-            }
+            // if (routerId !== 'orderManage' && routerId !== 'sellerManage' && routerId !== 'messageTool') {
+            //     this.strFlag.push(routerId);
+            //     if (pathArr[2]) {
+            //         let pathSecond = pathArr[2].substring(0, 1).toUpperCase() + pathArr[2].substring(1);
+            //         routerId += pathSecond;
+            //     }
+            // }
             return routerId;
         }
     }
@@ -42,8 +42,8 @@ export default {
 <template>
     <el-menu
         :default-active="onRoutes"
-        :router="true"
-        style="height: 100%;"
+        router
+        style="height: 100%"
         active-text-color="#409EFF"
         background-color="#343B54"
         text-color="#ffffff"
@@ -83,10 +83,6 @@ export default {
                 </template>
             </el-menu-item>
         </template>
-        <!-- <el-menu-item index="2">
-            <i class="el-icon-menu"></i>
-            <span slot="title">导航二</span>
-        </el-menu-item> -->
     </el-menu>
 </template>
 <style lang="stylus">

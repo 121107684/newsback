@@ -19,6 +19,9 @@ const home = {
     meta: {
         requiresAuth: true
     },
+    redirect: {
+        name: 'newsReleaseList'
+    },
     component: () => import ('../modules'),
     children: [newsRelease, apply, adSetting]
 };
@@ -26,9 +29,6 @@ const router = new VueRouter({
     routes: [
         home,
         userlogin,
-        // newsRelease,  // 新闻发布
-        // apply, // 入户申请
-        // adSetting, // 广告栏设置
         notFound
     ]
 });
