@@ -88,7 +88,9 @@ export default {
             this.$router.push({
                 path: `/${key}/detail`,
                 query: {
-                    id:data.id
+                    id:data.id,
+                    pageNum: 1,
+                    pageSize: 3
                 }
             });
         },

@@ -51,10 +51,12 @@ export default {
         -webkit-line-clamp 2
         -webkit-box-orient vertical
         color #000
+        margin-bottom 0px
     .line1
         white-space nowrap
         text-overflow ellipsis
         width 270px
         overflow hidden
         color #777
+        margin-bottom 0px
 </style>

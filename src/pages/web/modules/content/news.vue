@@ -63,14 +63,14 @@ export default {
         getNewsPagePublished({
             pageNum: 1,
             pageSize: 7,
-            type: 3
+            type: 4
         }).then(v=>{
             this.typeThree = v.data;
         })
         getNewsPagePublished({
             pageNum: 1,
             pageSize: 7,
-            type: 4
+            type: 3
         }).then(v=>{
             this.typeFour = v.data;
         })
@@ -86,7 +86,9 @@ export default {
             this.$router.push({
                 path: `/${key}/detail`,
                 query: {
-                    id:data.id
+                    id:data.id,
+                    pageNum: 1,
+                    pageSize: 7
                 }
             });
         },

@@ -54,8 +54,9 @@ export default {
         }
     },
     mounted() {
+        let {id, pageNum, pageSize} = this.$route.query;
         newsInfo({
-            id: parseInt(this.$route.query.id, 10)
+           id, pageNum, pageSize
         }).then(v=>{
             this.data = v.data;
         })
