@@ -82,9 +82,7 @@ export default {
             this.$router.push({
                 path: `/${this.code}/detail`,
                 query: {
-                    id:data.id,
-                    pageNum: this.query.pageNum,
-                    pageSize: this.query.pageSize,
+                    id:data.richId
                 }
             });
         },

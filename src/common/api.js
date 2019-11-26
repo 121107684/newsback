@@ -156,6 +156,18 @@ export const newsPublish = (data) => {
         "id": "integer"
     }
 */
+export const newsRichInfo = (data) => {
+    return request.post({
+        url: '/api/udc/news/richInfo',
+        params: data,
+        type:'json'
+    });
+};
+/* 新闻详情
+   params： {
+        "id": "integer"
+    }
+*/
 export const newsInfo = (data) => {
     return request.post({
         url: '/api/udc/news/info',

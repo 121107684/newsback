@@ -8,35 +8,29 @@
             <img :src="datas.url" alt="">
         </div>
         <div class="content">
-            {{data.digest}}
+            {{data.digest}} 
         </div>
         <ul>    
-            <li class="frist">
-                <h2>这里是第一条协会动态新闻的标题</h2>
-                <div class="flex-box">
-                    <img src="" alt="">
+            <li class="frist"  @click="routerGo('previousId')">
+                <h2>上一条：{{previousData.title ? previousData.title : '暂无更多'}}</h2>
+                <div v-if="data.previousId" class="flex-box">
+                    <img :src="imgurl(previousData)" alt="暂无图片">
                     <p>
-                        <span>2019.01.01</span>
+                        <span>{{previousData.publishDate}}</span>
                         <span>
-                        这里是协会动态的文章摘要
-                        这里是协会动态的文章摘要
-                        这里是协会动态的文章摘要
-                        这里是协会动态的文章摘要
+                        {{previousData.digest}}
                         </span>
                     </p>
                 </div>
             </li>
-            <li class="frist">
-                <h2>这里是第一条协会动态新闻的标题</h2>
-                <div class="flex-box">
-                    <img src="" alt="">
+            <li class="frist" @click="routerGo('nextId')">
+                <h2>下一条：{{nextData.title ? nextData.title : '暂无更多'}}</h2>
+                <div  v-if="data.nextId"  class="flex-box">
+                    <img :src="imgurl(nextData)" alt="暂无图片">
                     <p>
-                        <span>2019.01.01</span>
+                        <span>{{nextData.publishDate}}</span>
                         <span>
-                        这里是协会动态的文章摘要
-                        这里是协会动态的文章摘要
-                        这里是协会动态的文章摘要
-                        这里是协会动态的文章摘要
+                        {{nextData.digest}}
                         </span>
                     </p>
                 </div>
@@ -46,20 +40,61 @@
 </template>
 
 <script>
-import { newsInfo} from '@/common/api';
+import { newsRichInfo} from '@/common/api';
+import {Message} from 'element-ui';
+import Vue from 'vue';
+Vue.prototype.$message = Message;
 export default {
     data() {
         return {
-            data: {}
+            data: {},
+            nextData: {},
+            previousData: {}
+        }
+    },
+    methods: {
+        routerGo(data) {
+            if (this.data[data]) {
+                this.initPage(this.data[data])
+            } else {
+                this.$message.error('暂时没有更多啦，看看其他新闻吧');
+            }
+        },
+        imgurl(data) {
+            if (data.imgDatas) {
+                return data.imgDatas[0].url
+            }
+            return ''
+        },
+        initPage(id) {
+            newsRichInfo({
+                richId: id
+            }).then(v=>{
+                this.data = v.data;
+                if (v.data.nextId) {
+                    newsRichInfo({
+                        richId: v.data.nextId
+                    }).then(val=>{
+                        this.nextData = val.data;
+                    })
+                } else {
+                    this.nextData = {}
+                }
+                if(v.data.previousId) {
+                    newsRichInfo({
+                        richId: v.data.previousId
+                    }).then(val=>{
+                        this.previousData = val.data;
+                    })
+                } else {
+                    this.previousData = {}
+                }
+            })
         }
     },
     mounted() {
-        let {id, pageNum, pageSize} = this.$route.query;
-        newsInfo({
-           id, pageNum, pageSize
-        }).then(v=>{
-            this.data = v.data;
-        })
+        let {id} = this.$route.query;
+        this.initPage(id)
     },
 }
 </script>
@@ -93,6 +128,10 @@ export default {
             h2 
                 font-size 22px
                 font-weight bold
+                width 500px
+                white-space nowrap
+                text-overflow ellipsis
+                overflow hidden
             .flex-box
                 width 100%
                 display flex
@@ -109,4 +148,7 @@ export default {
                         display block
                         font-size 16px
                         padding-bottom 14px
+                    span:nth-child(2)
+                        height 70px
+                        overflow hidden
 </style>

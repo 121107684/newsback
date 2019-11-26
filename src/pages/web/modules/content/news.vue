@@ -3,12 +3,12 @@
         <div class="imgs">
             <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
                 <swiper-slide class="slide-big" v-for="(item, index) in adList" :key="index">
-                    <el-image @click="windowOpen(item)" class="img-style" :src="item.imgData.url">
+                    <el-image @click.stop="windowOpen(item)" class="img-style" :src="item.imgData.url">
                         <div slot="error" class="image-slot">
                             <i class="el-icon-picture-outline"></i>
                         </div>
                     </el-image>
-                    <div class="title">{{item.title}}</div>
+                    <div  @click.stop="windowOpen(item)" class="title">{{item.title}}</div>
                 </swiper-slide>
             </swiper>
         </div>
@@ -86,9 +86,7 @@ export default {
             this.$router.push({
                 path: `/${key}/detail`,
                 query: {
-                    id:data.id,
-                    pageNum: 1,
-                    pageSize: 7
+                    id:data.richId
                 }
             });
         },
