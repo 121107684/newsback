@@ -5,7 +5,7 @@
             <li @click="routerGo(data)" v-if="query.pageNum === 1" v-for="data in list.slice(0, 1)" :key="data.id" class="frist">
                 <h2>{{data.title}}</h2>
                 <div class="flex-box">
-                    <img src="" alt="">
+                    <img :src="imgurl(data)" alt="">
                     <p>
                         <span>{{data.publishDate}}</span>
                         <span>
@@ -72,6 +72,12 @@ export default {
         this.getList();
     },
     methods: {
+        imgurl(data) {
+            if (data.imgDatas) {
+                return data.imgDatas[0].url
+            }
+            return ''
+        },
         getList(){
             getNewsPagePublished(this.query).then(v=>{
                this.list = v.data,

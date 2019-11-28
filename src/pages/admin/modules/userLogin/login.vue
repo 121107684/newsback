@@ -30,9 +30,9 @@
                     </h6>
                 </div>
                 <div class="pull-right">
-                    <h6>
+                    <!-- <h6>
                         <router-link tag="a" class="link" to="login/revisePassword">修改密码</router-link>
-                    </h6>
+                    </h6> -->
                 </div>
             </form>
         </div>
