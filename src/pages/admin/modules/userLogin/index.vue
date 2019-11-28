@@ -5,7 +5,7 @@
         <div class="container">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">打开网站</a>
+                    <a class="nav-link" target="_blank" href="http://lyxh.dev.jingbaotech.com/web.html">打开网站</a>
                 </li>
             </ul>
         </div>
