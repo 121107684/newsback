@@ -70,7 +70,7 @@ export default {
                 text: '类型',
                 cellComponent: 'newtype-module'
             }, {
-                id: 'createTime',
+                id: 'publishDate',
                 text: '发布时间'
             }, {
                 id: 'status',
