@@ -1,6 +1,10 @@
 <template>
     <div class="content">
-        会员义务，待确认
+        <div class="title">会员义务</div>
+        <p>（一）遵守本会章程、执行本会决议；</p>
+        <p>（二）维护本会合法权益和声誉；</p>
+        <p>（三）完成本会交办的工作；</p>
+        <p>（四）向本会反映情况，提供有关资料。</p>
     </div>
 </template>
 
@@ -14,4 +18,13 @@
 .content
      padding  100px 50px
      font-size 16px
+    .title
+        font-size 20px
+        border-left 4px solid #2777E2
+        padding-left 16px
+        margin-bottom 20px
+    p 
+        font-size 18px
+        line-height 2
+        text-indent 2em
 </style>

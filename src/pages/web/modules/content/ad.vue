@@ -139,6 +139,7 @@ export default {
                     right -70px
         >ul
             padding 0px 21px
+            height 233px
             li.first 
                 display flex
                 justify-content space-between

@@ -1,5 +1,6 @@
 <template>
 <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="150px" class="ruleForm">
+<div class="title">入会申请</div>
     <el-form-item label="企业名称" prop="companyName">
         <el-input v-model="ruleForm.companyName"></el-input>
     </el-form-item>
@@ -120,4 +121,9 @@ Vue.prototype.$message = Message;
 .ruleForm
     padding 100px 50px
     width 500px
+    .title
+        font-size 20px
+        border-left 4px solid #2777E2
+        padding-left 16px
+        margin-bottom 20px
 </style>

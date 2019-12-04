@@ -61,7 +61,7 @@
 .h-250
     height 250px
     .logo
-        background url('~@/assets/img/web/logo.png')
+        background url('~@/assets/img/web/logo_new.png') no-repeat bottom left / auto 160px
         width 496px
         height 177px
         margin-left 114px

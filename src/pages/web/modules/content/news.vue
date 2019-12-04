@@ -157,6 +157,7 @@ export default {
                 &::before 
                     right -70px
         ul 
+            height 190px
             li
                 font-size 16px
                 line-height 26px
@@ -183,6 +184,6 @@ export default {
             line-height 1.5
             float right
             padding-right 15px
-            padding-top 20px
+            padding-top 12px
             color #2777E2
 </style>

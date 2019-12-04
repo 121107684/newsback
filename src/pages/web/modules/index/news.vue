@@ -38,6 +38,7 @@ export default {
     watch:{
         $route:{
             handler(newRouter){
+                console.debug(newRouter.path.match(/\/(\S*)\//)[1]);
                 try {
                     let path = newRouter.path.match(/\/(\S*)\//)[1];
                     this.activeIndex = path

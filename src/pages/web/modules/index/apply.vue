@@ -1,7 +1,7 @@
 <template>
     <div class="contents clearfix">
         <el-menu
-            default-active="2"
+            :default-active="activeIndex"
             class="el-menu-vertical"
             @select="handleSelect">
             <el-menu-item class="pl23 pr23 h46" index="constitution">协会章程</el-menu-item>
@@ -39,12 +39,18 @@ export default {
         $route:{
             handler(newRouter){
                 try {
-                    let path = newRouter.path.match(/\/(\S*)\//)[1];
+                    let path = newRouter.path.split('/')[2];
                     this.activeIndex = path
                 } catch {}
             }
         }
     },
+    mounted() {
+        try {
+            let path = this.$route.path.split('/')[2];
+            this.activeIndex = path
+        } catch {}
+    }
 }
 </script>
 

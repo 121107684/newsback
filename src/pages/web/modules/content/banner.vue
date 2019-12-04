@@ -93,20 +93,11 @@ export default {
             }
         },
         imgList: [{
-            url: 'http://47.92.175.76:8081/api/udc/file/get?key=default/c8c2fdf5efb35b41c8d947ceeef9d36b/850060.jpg',
-            title: '天空没有翅膀的痕迹，而我已经飞过。思念是翅膀飞过的痕迹。'
+            url: require('@/assets/img/banner/banner2.jpg'),
+            title: '这里是北京'
         },{
-            url: 'http://47.92.175.76:8081/api/udc/file/get?key=default/4ef716ae4d7af584959fbc776269afd3/157575.jpg',
-            title: '想要人生反转走上巅峰，真的没有那么容易。'
-        },{
-            url: 'http://47.92.175.76:8081/api/udc/file/get?key=default/552e2a6141ce846f4c6d2cdb5154cf5e/435424.jpg',
-            title: '飞花两岸照船红，百里榆堤半日风。卧看满天云不动，不知云与我俱东'
-        },{
-            url: 'http://47.92.175.76:8081/api/udc/file/get?key=default/0c2caffd3c0f5969435d299d51f8b168/044344.jpg',
-            title: '枫叶千枝复万枝，江桥掩映暮帆迟。忆君心似西江水，日夜东流无歇时。'
-        },{
-            url: 'http://47.92.175.76:8081/api/udc/file/get?key=default/f918f6089a7ebbccd0776fd4dc9caa0d/618273.jpg',
-            title: '愿你一生有山可靠，有树可栖。春赏花，夏纳凉，秋登山，冬扫雪。'
+            url: require('@/assets/img/banner/banner1.jpeg'),
+            title: '《女性非遗传承与创新》会议召开'
         }]
         // swiperOptionThumbs: {
         //     spaceBetween: 10,
@@ -157,7 +148,7 @@ export default {
     height 540px
     background-color #ccc
 .add-thumb
-    height 834px
+    height 727px
 .swiper-slide {
     background-size: cover;
     background-position: center;
