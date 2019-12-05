@@ -1,16 +1,37 @@
 <template>
     <div class="content">
         <div class="title">协会资源</div>
-        <p class="color">政府机构</p>
-        <p>全国侨联、中国国家博物馆、学习出版社、北京市民政局、北京市文化和旅游局、北京市工商联、北京市民非中心、北京市公园管理中心</p>
-        <p class="color">学术机构</p>
-        <p>中国科学院、中国社科院、北京大学土人设计研究院、中国人民大学体育研究所、中国企业家杂志社、清华大学美术学院、北京服装学院</p>
-        <p class="color">兄弟协会</p>
-        <p>中国企业联合会、全国人才交流中心、中国教育装备行业协会、中国期刊协会、中国职业经理人协会、中国百货协会时尚定制委员会、中国旅游协会旅游商品与装备分会、中国人类学研究会博物馆专业委员会、北京设计学会、首都民间组织促进会、北京电影家协会、北京陶瓷工业协会</p>
-        <p class="color">战略伙伴</p>
-        <p>中国邮政广告传媒有限公司、中国国际旅行社集团、北京出版集团、中国企业家杂志社。</p>
+        <p class="color">学术支持单位</p>
+        <p class="small">清华大学美术学院</p>
+        <p class="small">北京大学建筑与景观设计学院</p>
+        <p class="small">北京大学新闻与传播学院</p>
+        <p class="small">北京大学文化产业研究院</p>
+        <p class="small">中国人民大学文化产业研究院</p>
+        <p class="small">中国人民大学后勤集团</p>
+        <p class="small">中国劳动关系学院</p>
+        <p class="small">南开大学旅游与服务学院</p>
+        <p class="small">北京第二外国语学院旅游科学学院</p>
+        <p class="color">合作支持单位</p>
+        <p class="small">中国教育电视台</p>
+        <p class="small">教育部中外人文交流中心</p>
+        <p class="small">中国纺织工业联合会流通分会</p>
+        <p class="small">中国商业联合会市场委员会</p>
+        <p class="small">中国人类学民族学研究会博物馆文化专业委员会</p>
+        <p class="small">中国妇女旅游委员会</p>
+        <p class="small">中国百货协会时尚定制委员会</p>
+        <p class="small">中国职业经理人协会</p>
+        <p class="small">中国文化国际旅行社有限公司</p>
+        <p class="small">中国纺织摄影协会</p>
+        <p class="small">北京市文化创意产业促进中心</p>
+        <p class="small">北京文化产业商会</p>
+        <p class="small">北京设计学会</p>
+        <p class="small">首都民间组织促进会</p>
+        <p class="color">战略伙伴单位</p>
+        <p class="small">中国邮政广告传媒公司</p>
+        <p class="small">北京出版集团伦洋图书出版有限公司</p>
+        <p class="small mb60">京版梅尔杜蒙（北京）文化传媒有限公司</p>
         <p>会员企业涵盖文旅相关行业，经营范围：</p>
-        <div class="flex mt40">
+        <div class="flex mt20">
             <div class="mr24">
                 <p>内容开发</p>
                 <p>产品设计、生产</p>
@@ -52,6 +73,10 @@
         font-size 18px
         line-height 2
         text-indent 2em
+    p.small
+        font-size 16px
+        text-indent 4em
+        font-style italic
     .flex
         display flex
         >div

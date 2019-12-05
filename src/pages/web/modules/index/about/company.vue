@@ -39,7 +39,8 @@
         padding-left 16px
         margin-bottom 20px
     p 
-        font-size 18px
+        font-size 16px
         line-height 2
         text-indent 2em
+        font-style italic
 </style>
