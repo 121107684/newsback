@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-         <div class="title">协会章程</div>
+         <div class="title">入会须知</div>
          <p>一.认真阅读《北京旅游衍生品协会章程》等相关文件，并遵守相关规定。</p>
          <p>二.填报我会提供的《入会申请表》，在表中相应位置签字、盖章。</p>
          <p>三.入会需提供的材料：</p>

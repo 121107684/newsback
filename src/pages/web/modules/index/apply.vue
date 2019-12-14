@@ -4,7 +4,7 @@
             :default-active="activeIndex"
             class="el-menu-vertical"
             @select="handleSelect">
-            <el-menu-item class="pl23 pr23 h46" index="constitution">协会章程</el-menu-item>
+            <el-menu-item class="pl23 pr23 h46" index="constitution">入会须知</el-menu-item>
             <el-menu-item class="pl23 pr23 h46" index="condition">入会条件</el-menu-item>
             <el-menu-item class="pl23 pr23 h46" index="program">入会程序</el-menu-item>
             <el-menu-item class="pl23 pr23 h46" index="standard">会费标准</el-menu-item>

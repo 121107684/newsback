@@ -177,11 +177,12 @@ export default {
         display flex
         justify-content center
         li
-            width 204px
+            width 242px
             height 107px
             margin 0 16px
             position relative
             background-color #ccc
+            overflow hidden
             &:after
                 content ' '
                 display block
@@ -234,5 +235,5 @@ export default {
         overflow hidden
         width 100%
 .hei100
-    height 100%
+    width 100%
 </style>
