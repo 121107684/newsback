@@ -11,7 +11,7 @@
         </div>
     </nav>
     <div class="page-header" filter-color="orange">
-        <div class="page-header-image" :style="{'backgroundImage': `url(${require('@/assets/img/login.jpg')})`}"></div>
+        <div class="page-header-image"></div>
         <div class="container">
             <router-view></router-view>
         </div>
@@ -33,7 +33,5 @@ export default {
 <style scoped lang="scss">
 @import '~@/assets/css/bootstrap.min.css';
 @import '~@/assets/sass/now-ui-kit.scss';
-.page-header-image{
-    // background: url('~@/assets/img/login.jpg') no-repeat center top / 100% 100%
-}
+
 </style>
