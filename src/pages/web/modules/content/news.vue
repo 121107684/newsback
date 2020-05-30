@@ -78,7 +78,7 @@ export default {
             pageNum: 1,
             pageSize: 10,
         }).then(v=>{
-            this.adList = v.data
+            this.adList = v.data;
         }) 
     },
     methods: {
@@ -92,7 +92,7 @@ export default {
         },
         windowOpen(data){
             let url = data.url;
-            if(url && (url.indexOf('http://') === -1 || url.indexOf('https://') === -1)) {
+            if(url && (url.indexOf('http') === -1 || url.indexOf('https') === -1)) {
                 url = `http://${url}`
                 window.open(url)
             } else if (url) {

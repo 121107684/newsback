@@ -16,6 +16,11 @@ const resBaseData = {
  * @param {Object} data mockjs模板
  * @returns {Object} mockjs生成的数据
  */
+
+
+
+
+ 
 function warpMockData(data) {
     let body = mocker.mock(data);
     return Object.assign({}, resBaseData, body);

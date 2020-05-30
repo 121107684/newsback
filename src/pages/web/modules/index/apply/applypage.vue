@@ -7,7 +7,7 @@
     <el-form-item label="所属环境" prop="industry">
         <el-input v-model="ruleForm.industry"></el-input>
     </el-form-item>
-    <el-form-item label="所在区域" required prop="area">
+    <el-form-item label="所在区域" prop="area">
         <el-input v-model="ruleForm.area"></el-input>
     </el-form-item>
     <el-form-item label="企业法人" prop="corporate">
@@ -72,7 +72,7 @@ Vue.prototype.$message = Message;
                 ],
             area: [
                 { required: true, message: '请输入区域', trigger: 'blur' },
-                { min: 3, max: 30, message: '长度在 3 到 30 个字符', trigger: 'blur' }
+                { min: 1, max: 30, message: '长度在 1 到 30 个字符', trigger: 'blur' }
             ],
             corporate: [
                 { required: true, message: '请输入企业法人', trigger: 'blur' },

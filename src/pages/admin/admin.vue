@@ -8,6 +8,7 @@
 import watcher from '@/common/watcher';
 export default {
     async created() {
+        document.title = "北京旅游衍生品管理后台"
         watcher.watch({
             show: (err) => {
                 this.$message.error(err);

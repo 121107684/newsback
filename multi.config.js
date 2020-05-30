@@ -36,9 +36,8 @@ function getEntry(globPath) {
         return result;
     }, entries);
 }
-
 const pages =  files ? getEntry('./src/pages/**?/*.html') : onlyOne;
-// console.debug(pages)
+console.debug(pages)
 if (onePage && !pages[onePage]) {
     throw Error(`${onePage}页面不存在`);
 }

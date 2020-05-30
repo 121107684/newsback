@@ -5,7 +5,7 @@
         </div>
         <div class="text">
             <p class="line2">{{row.title}}</p>
-            <p class="line1">{{row.digest}}</p>
+            <p class="line1" >{{row.digest}}</p>
         </div>
     </div>
 </template>

@@ -19,6 +19,7 @@ export default {
         webFooter
     },
     async created() {
+        document.title = "北京旅游衍生品协会"
         watcher.watch({
             show: (err) => {
                 this.$message.error(err);

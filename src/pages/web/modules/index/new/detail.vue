@@ -7,8 +7,7 @@
         <div class="imgs" v-for="datas in data.imgDatas" :key="datas.url">
             <img :src="datas.url" alt="">
         </div>
-        <div class="content">
-            {{data.digest}} 
+        <div class="content" v-for="(datas, i) in digest"  :key="i" v-html="datas">
         </div>
         <ul>    
             <li class="frist"  @click="routerGo('previousId')">
@@ -47,9 +46,22 @@ Vue.prototype.$message = Message;
 export default {
     data() {
         return {
-            data: {},
-            nextData: {},
-            previousData: {}
+            data: {
+                title:'',
+                digest: ''
+            },
+            nextData: {
+                title:'',
+            },
+            previousData: {
+                title:'',
+            }
+        }
+    },
+    computed: {
+        digest() {
+            let rowFilter = this.data ? this.data.digest.split('\n') : '';
+            return rowFilter;
         }
     },
     methods: {
@@ -70,25 +82,30 @@ export default {
             newsRichInfo({
                 richId: id
             }).then(v=>{
-                this.data = v.data;
-                if (v.data.nextId) {
-                    newsRichInfo({
-                        richId: v.data.nextId
-                    }).then(val=>{
-                        this.nextData = val.data;
-                    })
+                if (v.data) {
+                    this.data = v.data;
+                    if (v.data && v.data.nextId) {
+                        newsRichInfo({
+                            richId: v.data.nextId
+                        }).then(val=>{
+                            this.nextData = val.data;
+                        })
+                    } else {
+                        this.nextData = {}
+                    }
+                    if(v.data && v.data.previousId) {
+                        newsRichInfo({
+                            richId: v.data.previousId
+                        }).then(val=>{
+                            this.previousData = val.data;
+                        })
+                    } else {
+                        this.previousData = {}
+                    }
                 } else {
-                    this.nextData = {}
+                    this.$message.error('暂无新闻');
                 }
-                if(v.data.previousId) {
-                    newsRichInfo({
-                        richId: v.data.previousId
-                    }).then(val=>{
-                        this.previousData = val.data;
-                    })
-                } else {
-                    this.previousData = {}
-                }
+               
             })
         }
     },
