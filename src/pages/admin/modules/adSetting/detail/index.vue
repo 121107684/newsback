@@ -78,6 +78,7 @@ export default {
     methods: {
         del() {
             this.ruleForm.imgData = {}
+            this.ruleForm.fileKey = null
         },
         submitForm() {
             this.$refs.ruleForm.validate((valid) => {
@@ -86,7 +87,7 @@ export default {
                         case 'edit': 
                             getAdUpdata(
                                 this.ruleForm
-                            ).then(v=>{
+                            ).then(v =>{
                                 this.back();
                             })
                             break;
@@ -123,8 +124,9 @@ export default {
                 id:  this.$route.query.id
             }).then(v=>{
                 Object.keys(v.data).forEach(key=>{
-                    this.ruleForm[key] = v.data[key]
+                    this.ruleForm[key] = v.data[key] 
                 })
+                this.ruleForm.fileKey = v.data.imgData.fileKey
             })
         }
     }
