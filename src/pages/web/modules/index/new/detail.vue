@@ -2,7 +2,7 @@
     <div class="detail">
         <div class="title">
             {{data.title}}
-            <span>{{data.publishDate}}</span>
+            <span>{{getTime(data.publishDate)}}</span>
         </div>
         <div class="imgs" v-for="datas in data.imgDatas" :key="datas.url">
             <img :src="datas.url" alt="">
@@ -12,7 +12,7 @@
         <ul>    
             <li class="frist"  @click="routerGo('previousId')">
                 <h2>上一条：{{previousData.title ? previousData.title : '暂无更多'}}</h2>
-                <div v-if="data.previousId" class="flex-box">
+                <!-- <div v-if="data.previousId" class="flex-box">
                     <img :src="imgurl(previousData)" alt="暂无图片">
                     <p>
                         <span>{{previousData.publishDate}}</span>
@@ -20,11 +20,11 @@
                         {{previousData.digest}}
                         </span>
                     </p>
-                </div>
+                </div> -->
             </li>
             <li class="frist" @click="routerGo('nextId')">
                 <h2>下一条：{{nextData.title ? nextData.title : '暂无更多'}}</h2>
-                <div  v-if="data.nextId"  class="flex-box">
+                <!-- <div  v-if="data.nextId"  class="flex-box">
                     <img :src="imgurl(nextData)" alt="暂无图片">
                     <p>
                         <span>{{nextData.publishDate}}</span>
@@ -32,7 +32,7 @@
                         {{nextData.digest}}
                         </span>
                     </p>
-                </div>
+                </div> -->
             </li>
         </ul>
     </div>
@@ -65,6 +65,12 @@ export default {
         }
     },
     methods: {
+         getTime(date) {
+            let dates = new Date(date);
+            let s = '';
+            s = dates.getFullYear() + '-' + (dates.getMonth() + 1) + '-' + dates.getDay()
+            return s;
+        },
         routerGo(data) {
             if (this.data[data]) {
                 this.initPage(this.data[data])
@@ -134,16 +140,19 @@ export default {
             margin 0 auto 20px
             width 400px
     >.content
-        font-size 16px
-        line-height 2
+        font-size 18px
+        line-height 3
         text-indent 2em
+        padding 0 3em
     ul 
-        padding-top 20px
+        padding 20px 3em 0
         display flex
         justify-content space-between
+        li 
+            cursor pointer
         li.frist 
             h2 
-                font-size 22px
+                font-size 18px
                 font-weight bold
                 width 500px
                 white-space nowrap

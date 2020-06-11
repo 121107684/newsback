@@ -42,8 +42,8 @@
         padding-left 16px
         margin-bottom 20px
     p 
-        font-size 18px
-        line-height 2
+        font-size 16px
+        line-height 3
         text-indent 2em
     &.color
         color #f86664

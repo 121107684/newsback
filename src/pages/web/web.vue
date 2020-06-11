@@ -37,5 +37,5 @@ export default {
     width 1366px
     min-height 100%
     margin 0 auto
-    background url('~@/assets/img/web/bg.jpg')
+    background url('~@/assets/img/web/bg.jpg') no-repeat top center / 100% auto
 </style>

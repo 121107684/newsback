@@ -93,11 +93,20 @@ export default {
             }
         },
         imgList: [{
-            url: require('@/assets/img/banner/banner2.jpg'),
-            title: '这里是北京'
+            url: require('@/assets/img/banner/banner1.png'),
+            title: '林德汤会长做《协会2019年工作报告》'
         },{
-            url: require('@/assets/img/banner/banner1.jpeg'),
-            title: '《女性非遗传承与创新》会议召开'
+            url: require('@/assets/img/banner/banner2.png'),
+            title: '“一江水 一家人”澜湄国家命运共同体公益海报设计大赛征集启事'
+        },{
+            url: require('@/assets/img/banner/banner3.png'),
+            title: '协会联合主办“中国文化与旅游融合发展论坛”在北京顺利举行'
+        },{
+            url: require('@/assets/img/banner/banner4.png'),
+            title: '协会以战略合作伙伴身份参加“科技赋能 邮驿新韵”第四届全国主题邮局文化展'
+        },{
+            url: require('@/assets/img/banner/banner5.png'),
+            title: '李杰书记和林德汤会长向协会首批十位专家智囊颁发聘任证书'
         }]
         // swiperOptionThumbs: {
         //     spaceBetween: 10,
@@ -145,10 +154,10 @@ export default {
 <style lang="stylus" scoped>
 .gallery-top
     width 100%
-    height 540px
+    height 670px
     background-color #ccc
 .add-thumb
-    height 727px
+    height 857px
 .swiper-slide {
     background-size: cover;
     background-position: center;

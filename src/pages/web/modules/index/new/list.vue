@@ -3,11 +3,11 @@
         <div class="title">{{title}}</div>
         <ul>    
             <li @click="routerGo(data)" v-if="query.pageNum === 1" v-for="data in list.slice(0, 1)" :key="data.id" class="frist">
-                <h2>{{data.title}}</h2>
+                <h2>{{data.title}} </h2>
                 <div class="flex-box">
                     <img :src="imgurl(data)" alt="">
                     <p>
-                        <span>{{data.publishDate}}</span>
+                        <span>{{getTime(data.publishDate)}}</span>
                         <span>
                         {{data.digest}}
                         </span>
@@ -17,7 +17,7 @@
             <li  @click="routerGo(data)"  v-for="data in pagelist" :key="data.id" class="frist">
                 <p>
                     <span>{{data.title}}</span>
-                    <span>{{data.publishDate}}</span>
+                    <span>{{getTime(data.publishDate)}}</span>
                 </p>
             </li>
         </ul>
@@ -72,6 +72,12 @@ export default {
         this.getList();
     },
     methods: {
+        getTime(date) {
+            let dates = new Date(date);
+            let s = '';
+            s = dates.getFullYear() + '-' + (dates.getMonth() + 1) + '-' + dates.getDay()
+            return s;
+        },
         imgurl(data) {
             if (data.imgDatas) {
                 return data.imgDatas[0].url
@@ -139,6 +145,8 @@ export default {
             h2 
                 font-size 22px
                 font-weight bold
+                span    
+                   font-size 16px 
             .flex-box
                 width 100%
                 display flex
@@ -149,7 +157,7 @@ export default {
                     height 245px
                     background-color #ccc
                 p 
-                    width 485px
+                    width 550px
                     span 
                         display block
                         font-size 16px
@@ -159,8 +167,7 @@ export default {
                         height 190px
         li 
             font-size 16px
-            padding-bottom 20px
-            padding-top 20px
+            padding 20px
             border-bottom 1px dotted #2777E2
             >p 
                 display flex

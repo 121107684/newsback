@@ -10,7 +10,7 @@
                 <li  v-if="typeOne.length>2"> 
                     <p @click="routerGo(data, 'news')" v-for="data in typeOne.slice(1, 10)" :key="data.id">
                         <span>{{data.title}}</span>
-                        <span>{{data.publishDate}}</span>
+                        <!-- <span>{{data.publishDate}}</span> -->
                     </p>
                 </li>
             </ul>
@@ -27,7 +27,7 @@
                 <li  v-if="typeTwo.length>2">
                     <p  @click="routerGo(data, 'menber')" v-for="data in typeTwo.slice(1)" :key="data.id">
                         <span>{{data.title}}</span>
-                        <span>{{data.publishDate}}</span>
+                        <!-- <span>{{data.publishDate}}</span> -->
                     </p>
                 </li>
             </ul>
@@ -167,14 +167,15 @@ export default {
                     border-bottom 1px dotted #2777E2
                     span:first-child
                         display block
-                        width 268px
+                        width 100%
                         white-space nowrap
                         text-overflow ellipsis
                         overflow hidden
-                    span:last-child
-                        display block
-                        width 157px  
-                        text-align right
+                        padding 0 8px
+                    // span:last-child
+                    //     display block
+                    //     width 157px  
+                    //     text-align right
                     &:hover
                         background-color rgba(0, 0, 0, .1)
         >a 

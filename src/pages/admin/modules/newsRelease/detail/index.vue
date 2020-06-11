@@ -42,7 +42,7 @@
                 </div>
         </el-form-item> 
         <el-form-item label="新闻内容" prop="digest">
-            <el-input type="textarea" v-model="ruleForm.digest"></el-input>
+            <el-input rows="20" type="textarea" v-model="ruleForm.digest"></el-input>
         </el-form-item>
         <el-form-item>
             <el-button type="primary" @click="submitForm">提交</el-button>

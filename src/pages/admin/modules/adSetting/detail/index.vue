@@ -19,7 +19,7 @@
                 </div>
             </div>
             <pic-upload v-else @uploadSuccess="uploadSucess" :showIng="true"></pic-upload>
-            <p>图片大小推荐使用1024*128</p>
+            <p>图片大小推荐使用485px(宽)*285px(高)</p>
         </el-form-item>
         <el-form-item label="广告图标题" prop="title">
             <el-input v-model="ruleForm.title"></el-input>

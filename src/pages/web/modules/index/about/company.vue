@@ -40,7 +40,6 @@
         margin-bottom 20px
     p 
         font-size 16px
-        line-height 2
+        line-height 3
         text-indent 2em
-        font-style italic
 </style>
