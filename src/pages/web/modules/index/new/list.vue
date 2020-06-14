@@ -161,10 +161,12 @@ export default {
                     span 
                         display block
                         font-size 16px
+                    span:nth-child(1)
                         padding-bottom 20px
                     span:nth-child(2)
                         overflow hidden
-                        height 190px
+                        line-height 2em
+                        height 189px
         li 
             font-size 16px
             padding 20px
