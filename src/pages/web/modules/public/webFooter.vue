@@ -1,18 +1,15 @@
 <template>
     <div class="footer">
         <div class="texts">
-            <p>主办单位： 北京旅游衍生品协会</p>
-            <p>技术支持：北京鲸保科技有限公司</p>
-            <p>地址：北京市东城区建国门内大街26号新闻大厦</p>
+            <p>版权所有： 北京旅游衍生品协会</p>
+            <p>京ICP备20017970号</p>
         </div>
         <div  class="texts">
-            <p>电话：010-8592 1229</p>
-            <p>传真：010-8592 1227</p>
-            <p>邮箱：100005</p>
+            <p>电话：010-65518088</p>
+            <p>技术支持：鲸保科技</p>
         </div>
-        <div v-if="false" class="texts">
-            <div>京公安网备案号：</div>
-            <div>ICP备案号：</div>
+        <div class="texts">
+            <div>地址：北京市朝阳区朝外大街18号丰联广场大厦15层A座1509单元  </div>
         </div>
     </div>
 </template>
